@@ -24,3 +24,10 @@
     subscription_id: "((azure_subscription_id))"
     storage_id: "((azure_storage_id))"
     storage_secret: "((azure_storage_secret))"
+
+- type: replace
+  path: /releases/name=diego
+  value:
+    url: https://andliuonlinefiles.blob.core.windows.net/cf-private-releases/diego-release-vcontainer.tgz
+    version: 2.6.0+dev.1525438458
+    sha1: ea5cdfd404ce4ffea659d30561d64c520f9f113e
