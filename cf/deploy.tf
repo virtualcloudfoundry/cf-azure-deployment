@@ -26,8 +26,9 @@ resource "azurerm_virtual_machine_extension" "deploy" {
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/manifests/use-compiled-releases.yml",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/manifests/use-managed-disks.yml",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/manifests/use-azure-storage-blobstore.yml",
-                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/manifests/use-vcontainer.yml",
-                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/manifests/debug_mode.yml",
+                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/manifests/aci.yml",
+                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/manifests/no-aci.yml",
+                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/manifests/debug.yml",
                     "https://s3-us-west-1.amazonaws.com/cf-cli-releases/releases/v6.34.1/cf-cli-installer_6.34.1_x86-64.deb"]
     }
 SETTINGS

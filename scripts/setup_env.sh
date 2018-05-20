@@ -147,13 +147,13 @@ bosh create-env ~/example_manifests/bosh.yml \\
   -v client_id=${client_id} \\
 EOF
 
-if ["${debug_mode}" == "enabled" ]; then
+if [ "${debug_mode}" == "enabled" ]; then
   cat >> "$home_dir/deploy_bosh.sh" << EOF
   -o ~/example_manifests/debug.yml \\
 EOF
 fi
 
-if ["${use_vcontainer}" == "enabled" ]; then
+if [ "${use_vcontainer}" == "enabled" ]; then
   cat >> "$home_dir/deploy_bosh.sh" << EOF
   -o ~/example_manifests/aci.yml \\
 EOF
