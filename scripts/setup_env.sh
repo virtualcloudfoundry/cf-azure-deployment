@@ -147,22 +147,6 @@ bosh create-env ~/example_manifests/bosh.yml \\
   -v client_id=${client_id} \\
 EOF
 
-if [ "${debug_mode}" == "enabled" ]; then
-  cat >> "$home_dir/deploy_bosh.sh" << EOF
-  -o ~/example_manifests/debug.yml \\
-EOF
-fi
-
-if [ "${use_vcontainer}" == "enabled" ]; then
-  cat >> "$home_dir/deploy_bosh.sh" << EOF
-  -o ~/example_manifests/aci.yml \\
-EOF
-else
-  cat >> "$home_dir/deploy_bosh.sh" << EOF
-  -o ~/example_manifests/no-aci.yml \\
-EOF
-fi
-
 if [ "${service_principal_type}" == "Password" ]; then
   cat >> "$home_dir/deploy_bosh.sh" << EOF
   -v client_secret="$(client_secret_or_certificate)" \\
@@ -253,7 +237,24 @@ else
   -v droplet_directory_key=cc-droplet \\
   -v resource_directory_key=cc-resource
 EOF
-fi 
+fi
+
+if [ "${debug_mode}" == "enabled" ]; then
+  cat >> "$home_dir/deploy_cloud_foundry.sh" << EOF
+  -o ~/example_manifests/debug.yml \\
+EOF
+fi
+
+if [ "${use_vcontainer}" == "enabled" ]; then
+  cat >> "$home_dir/deploy_cloud_foundry.sh" << EOF
+  -o ~/example_manifests/aci.yml \\
+EOF
+else
+  cat >> "$home_dir/deploy_cloud_foundry.sh" << EOF
+  -o ~/example_manifests/no-aci.yml \\
+EOF
+fi
+
 chmod 777 $home_dir/deploy_cloud_foundry.sh
 
 cat >> "$home_dir/connect_director_vm.sh" << EOF
