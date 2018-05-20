@@ -64,6 +64,18 @@ variable "use_availability_zones" {
   description = "enabled or disabled"
 }
 
+variable "use_vcontainer" {
+  type        = "string"
+  default     = "disabled"
+  description = "enabled or disabled"
+}
+
+variable "debug_mode" {
+  type        = "string"
+  default     = "disabled"
+  description = "enabled or disabled"
+}
+
 provider "azurerm" {
   subscription_id = "${var.subscription_id}"
   tenant_id       = "${var.tenant_id}"

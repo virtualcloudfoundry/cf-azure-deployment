@@ -15,6 +15,12 @@ function get_setting() {
   echo $value
 }
 
+# VContainer
+use_vcontainer=$(get_setting USE_VCONTAINER)
+
+# Debug
+debug_mode=$(get_setting DEBUG_MODE)
+
 # Service Principal
 environment=$(get_setting ENVIRONMENT)
 service_principal_type=$(get_setting SERVICE_PRINCIPAL_TYPE)
@@ -140,6 +146,22 @@ bosh create-env ~/example_manifests/bosh.yml \\
   -v tenant_id=${tenant_id} \\
   -v client_id=${client_id} \\
 EOF
+
+if ["${debug_mode}" == "enabled" ]; then
+  cat >> "$home_dir/deploy_bosh.sh" << EOF
+  -o ~/example_manifests/debug.yml \\
+EOF
+fi
+
+if ["${use_vcontainer}" == "enabled" ]; then
+  cat >> "$home_dir/deploy_bosh.sh" << EOF
+  -o ~/example_manifests/aci.yml \\
+EOF
+else
+  cat >> "$home_dir/deploy_bosh.sh" << EOF
+  -o ~/example_manifests/no-aci.yml \\
+EOF
+fi
 
 if [ "${service_principal_type}" == "Password" ]; then
   cat >> "$home_dir/deploy_bosh.sh" << EOF

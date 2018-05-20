@@ -1,9 +1,10 @@
 resource "azurerm_public_ip" "bastion" {
-  name                         = "${var.prefix}bastion-ip"
+  name                         = "${var.prefix}-bastion-ip"
   location                     = "${var.location}"
   depends_on                   = ["azurerm_resource_group.rg"]
   resource_group_name          = "${azurerm_resource_group.rg.name}"
   public_ip_address_allocation = "static"
+  sku                          = "Standard"
 
   tags {
     environment = "${module.variables.environment-tag}"
@@ -12,7 +13,7 @@ resource "azurerm_public_ip" "bastion" {
 
 // BOSH bastion host
 resource "azurerm_network_interface" "bastion" {
-  name                      = "${var.prefix}bastion-nic"
+  name                      = "${var.prefix}-bastion-nic"
   depends_on                = ["azurerm_public_ip.bastion", "azurerm_subnet.bosh-subnet", "azurerm_network_security_group.bastion"]
   location                  = "${var.location}"
   resource_group_name       = "${azurerm_resource_group.rg.name}"
@@ -28,7 +29,7 @@ resource "azurerm_network_interface" "bastion" {
 }
 
 resource "azurerm_virtual_machine" "bastion" {
-  name                    = "${var.prefix}bastion"
+  name                    = "${var.prefix}-bastion"
   depends_on              = ["azurerm_network_interface.bastion"]
   vm_size                 = "Standard_D1_v2"
   location                = "${var.location}"
@@ -64,8 +65,8 @@ resource "azurerm_virtual_machine" "bastion" {
       "SUBNET_ADDRESS_RANGE_FOR_BOSH": "${azurerm_subnet.bosh-subnet.address_prefix}",
       "SUBNET_NAME_FOR_CLOUD_FOUNDRY": "${azurerm_subnet.cf-subnet.name}",
       "SUBNET_ADDRESS_RANGE_FOR_CLOUD_FOUNDRY": "${azurerm_subnet.cf-subnet.address_prefix}",
-      "CLOUD_FOUNDRY_PUBLIC_IP":"${azurerm_public_ip.cf-balancer-ip.ip_address}"
-      "LOAD_BALANCER_NAME":"${azurerm_lb.cf-balancer.name}"
+      "CLOUD_FOUNDRY_PUBLIC_IP":"${azurerm_public_ip.cf-balancer-ip.ip_address}",
+      "LOAD_BALANCER_NAME":"${azurerm_lb.cf-balancer.name}",
       "NSG_NAME_FOR_BOSH": "${azurerm_network_security_group.bosh.name}",
       "NSG_NAME_FOR_CLOUD_FOUNDRY":"${azurerm_network_security_group.cf.name}",
       "SUBSCRIPTION_ID": "${var.subscription_id}",
@@ -81,10 +82,12 @@ resource "azurerm_virtual_machine" "bastion" {
       "STEMCELL_SHA1":"e4fca475f06ad437bebe268e57fc899525c92cc1",
       "BOSH_CLI_URL":"https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-2.0.48-linux-amd64",
       "AUTO_DEPLOY_BOSH": "${var.auto_deploy_bosh}",
-      "AUTO_DEPLOY_CLOUD_FOUNDRY":"${var.auto_deploy_cf}"
+      "AUTO_DEPLOY_CLOUD_FOUNDRY":"${var.auto_deploy_cf}",
       "BOSH_VM_SIZE": "${var.bosh_vm_size}",
       "SERVICE_PRINCIPAL_TYPE": "Password",
-      "USE_AVAILABILITY_ZONES": "${var.use_availability_zones}"
+      "USE_AVAILABILITY_ZONES": "${var.use_availability_zones}",
+      "USE_VCONTAINER": ${var.use_vcontainer},
+      "DEBUG_MODE": ${var.debug_mode}
     }
 CUSTOM_DATA
   }
