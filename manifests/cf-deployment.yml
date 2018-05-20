@@ -1104,6 +1104,12 @@ instance_groups:
         rep:
           preloaded_rootfses:
           - cflinuxfs2:/var/vcap/packages/cflinuxfs2/rootfs.tar
+          use_vcontainer: false
+          vcontainer:
+            api_location: "vcontainer.service.cf.internal:8892"
+            ca_cert: "((service_cf_internal_ca.certificate))"
+            client_cert: "((diego_vcontainer_client.certificate))"
+            client_key: "((diego_vcontainer_client.private_key))"
       containers:
         trusted_ca_certificates:
           - ((application_ca.certificate))
@@ -1113,7 +1119,15 @@ instance_groups:
         ca_cert: "((service_cf_internal_ca.certificate))"
         cert: "((diego_rep_agent_v2.certificate))"
         key: "((diego_rep_agent_v2.private_key))"
-
+  - name: vcontainer
+      release: diego
+      properties:
+        #enable_consul_service_registration: true
+        diego:
+          vcontainer:
+            ca_cert: "((service_cf_internal_ca.certificate))"
+            server_cert: "((diego_vcontainer_server.certificate))"
+            server_key: "((diego_vcontainer_server.private_key))"
   - name: cfdot
     release: diego
     properties:

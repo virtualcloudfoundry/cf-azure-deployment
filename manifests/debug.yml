@@ -1,0 +1,49 @@
+
+# ----- Scale Down ------
+- type: replace
+  path: /instance_groups/name=consul?/instances
+  value: 1
+- type: replace
+  path: /instance_groups/name=nats/instances
+  value: 1
+- type: replace
+  path: /instance_groups/name=diego-api/instances
+  value: 1
+- type: replace
+  path: /instance_groups/name=uaa/instances
+  value: 1
+- type: replace
+  path: /instance_groups/name=scheduler/instances
+  value: 1
+- type: replace
+  path: /instance_groups/name=diego-cell/instances
+  value: 1
+- type: replace
+  path: /instance_groups/name=diego-cell/jobs/name=rep/properties/diego/rep/evacuation_timeout_in_seconds?
+  value: 0
+- type: replace
+  path: /instance_groups/name=router/instances
+  value: 1
+- type: replace
+  path: /instance_groups/name=tcp-router/instances
+  value: 1
+- type: replace
+  path: /instance_groups/name=api/instances
+  value: 1
+- type: replace
+  path: /instance_groups/name=cc-worker/instances
+  value: 1
+- type: replace
+  path: /instance_groups/name=adapter/instances
+  value: 1
+- type: replace
+  path: /instance_groups/name=doppler/instances
+  value: 1
+- type: replace
+  path: /instance_groups/name=log-api/instances
+  value: 1
+
+# ----- Reduce default app memory to 256M ------
+- type: replace
+  path: /instance_groups/name=api/jobs/name=cloud_controller_ng/properties/cc/default_app_memory?
+  value: 256

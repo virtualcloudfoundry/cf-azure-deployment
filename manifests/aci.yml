@@ -1,0 +1,26 @@
+
+# ----- Replace the properties for the container service providers.
+- type: replace
+  path: /instance_groups/name=diego-cell/jobs/name=rep/properties/diego/rep/use_vcontainer
+  value: true
+
+- type: replace
+  path: /instance_groups/name=diego-cell/jobs/name=vcontainer/properties/diego/vcontainer/container_service_provider?
+  value: "((container_service_provider))" # garden, aws or azure
+
+- type: replace
+  path: /instance_groups/name=diego-cell/jobs/name=vcontainer/properties/diego/vcontainer/smb_proxy?
+  value:
+    ip: "((smb_proxy_ip))"
+    port: "((smb_proxy_port))"
+
+- type: replace
+  path: /instance_groups/name=diego-cell/jobs/name=vcontainer/properties/diego/vcontainer/azure_container_provider_cfg?
+  value:
+    container_id: "((azure_service_id))"
+    container_secret: "((azure_service_secret))"
+    optional_param_1: "((azure_tenant_id))"
+    location: "((azure_location))"
+    subscription_id: "((azure_subscription_id))"
+    storage_id: "((azure_storage_id))"
+    storage_secret: "((azure_storage_secret))"
