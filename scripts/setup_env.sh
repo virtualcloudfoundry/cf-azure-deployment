@@ -246,7 +246,15 @@ EOF
 fi
 
 if [ "${use_vcontainer}" == "enabled" ]; then
+  aci_location = $(get_setting ACI_LOCATION)
   cat >> "$home_dir/deploy_cloud_foundry.sh" << EOF
+  -v tenant_id=${tenant_id} \\
+  -v client_id=${client_id} \\
+  -v client_secret="$(client_secret_or_certificate)" \\
+  -v subscription_id=$(get_setting SUBSCRIPTION_ID)
+  -v aci_location="$(get_setting ACI_LOCATION)" \\
+  -v storage_id="$(get_setting ACI_STORAGE_ACCOUNT_NAME)" \\
+  -v storage_secret="$(get_setting ACI_STORAGE_ACCOUNT_KEY)" \\
   -o ~/example_manifests/aci.yml \\
 EOF
 else
