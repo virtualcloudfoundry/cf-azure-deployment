@@ -17,17 +17,17 @@
 - type: replace
   path: /instance_groups/name=diego-cell/jobs/name=vcontainer/properties/diego/vcontainer/azure_container_provider_cfg?
   value:
-    container_id: "((azure_service_id))"
-    container_secret: "((azure_service_secret))"
-    optional_param_1: "((azure_tenant_id))"
-    location: "((azure_location))"
-    subscription_id: "((azure_subscription_id))"
-    storage_id: "((azure_storage_id))"
-    storage_secret: "((azure_storage_secret))"
+    container_id: "((client_id))"
+    container_secret: "((client_secret))"
+    optional_param_1: "((tenant_id))"
+    location: "((aci_location))"
+    subscription_id: "((subscription_id))"
+    storage_id: "((aci_storage_id))"
+    storage_secret: "((aci_storage_secret))"
 
 - type: replace
   path: /releases/name=diego
   value:
     url: https://andliuonlinefiles.blob.core.windows.net/cf-private-releases/diego-release-vcontainer.tgz
-    version: 2.6.0+dev.1525438458
-    sha1: ea5cdfd404ce4ffea659d30561d64c520f9f113e
+    version: 2.6.0+dev.1526885702
+    sha1: 5f75aa568ee14a9e4dc30ea08a95471e7982b19d
