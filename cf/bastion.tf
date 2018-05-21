@@ -90,6 +90,7 @@ resource "azurerm_virtual_machine" "bastion" {
       "DEBUG_MODE": "${var.debug_mode}",
 
       "ACI_LOCATION": "${var.location}",
+      "ACI_RESOURCE_GROUP": "${azurerm_resource_group.rg.name}",
       "ACI_STORAGE_ACCOUNT_NAME":  "${join("", azurerm_storage_account.aci-default-storage.*.name)}",
       "ACI_STORAGE_ACCOUNT_KEY": "${join("", azurerm_storage_account.aci-default-storage.*.primary_access_key)}"
     }
