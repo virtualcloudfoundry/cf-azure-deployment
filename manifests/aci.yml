@@ -22,6 +22,7 @@
     optional_param_1: "((tenant_id))"
     location: "((aci_location))"
     subscription_id: "((subscription_id))"
+    resource_group: "((aci_resource_group))"
     storage_id: "((aci_storage_id))"
     storage_secret: "((aci_storage_secret))"
 
