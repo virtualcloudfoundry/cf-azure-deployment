@@ -87,7 +87,11 @@ resource "azurerm_virtual_machine" "bastion" {
       "SERVICE_PRINCIPAL_TYPE": "Password",
       "USE_AVAILABILITY_ZONES": "${var.use_availability_zones}",
       "USE_VCONTAINER": "${var.use_vcontainer}",
-      "DEBUG_MODE": "${var.debug_mode}"
+      "DEBUG_MODE": "${var.debug_mode}",
+
+      "ACI_LOCATION": "${var.location}",
+      "ACI_STORAGE_ACCOUNT_NAME":  "${join("", azurerm_storage_account.aci-default-storage.*.name)}",
+      "ACI_STORAGE_ACCOUNT_KEY": "${join("", azurerm_storage_account.aci-default-storage.*.primary_access_key)}"
     }
 CUSTOM_DATA
   }
