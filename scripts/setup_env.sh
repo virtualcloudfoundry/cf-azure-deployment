@@ -217,12 +217,12 @@ if [ "$environment" = "AzureChinaCloud" ]; then
   -v app_package_directory_key=cc-packages \\
   -v buildpack_directory_key=cc-buildpack \\
   -v droplet_directory_key=cc-droplet \\
-  -v resource_directory_key=cc-resource
+  -v resource_directory_key=cc-resource \\
 EOF
 elif [ "$environment" = "AzureStack" ]; then
   cat >> "$home_dir/deploy_cloud_foundry.sh" << EOF
   -o ~/example_manifests/use-compiled-releases.yml \\
-  -v system_domain=$(get_setting CLOUD_FOUNDRY_PUBLIC_IP).xip.io
+  -v system_domain=$(get_setting CLOUD_FOUNDRY_PUBLIC_IP).xip.io \\
 EOF
 else
   cat >> "$home_dir/deploy_cloud_foundry.sh" << EOF
@@ -235,7 +235,7 @@ else
   -v app_package_directory_key=cc-packages \\
   -v buildpack_directory_key=cc-buildpack \\
   -v droplet_directory_key=cc-droplet \\
-  -v resource_directory_key=cc-resource
+  -v resource_directory_key=cc-resource \\
 EOF
 fi
 
