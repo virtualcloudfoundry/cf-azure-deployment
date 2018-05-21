@@ -1120,14 +1120,14 @@ instance_groups:
         cert: "((diego_rep_agent_v2.certificate))"
         key: "((diego_rep_agent_v2.private_key))"
   - name: vcontainer
-      release: diego
-      properties:
-        #enable_consul_service_registration: true
-        diego:
-          vcontainer:
-            ca_cert: "((service_cf_internal_ca.certificate))"
-            server_cert: "((diego_vcontainer_server.certificate))"
-            server_key: "((diego_vcontainer_server.private_key))"
+    release: diego
+    properties:
+      #enable_consul_service_registration: true
+      diego:
+        vcontainer:
+          ca_cert: "((service_cf_internal_ca.certificate))"
+          server_cert: "((diego_vcontainer_server.certificate))"
+          server_key: "((diego_vcontainer_server.private_key))"
   - name: cfdot
     release: diego
     properties:
