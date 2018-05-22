@@ -32,6 +32,14 @@ resource "azurerm_lb_probe" "web-https-probe" {
   port                = 443
 }
 
+resource "azurerm_lb_probe" "web-http-probe" {
+  name                = "${var.prefix}-web-http-probe"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  loadbalancer_id     = "${azurerm_lb.cf-balancer.id}"
+  protocol            = "TCP"
+  port                = 80
+}
+
 resource "azurerm_lb_rule" "cf-balancer-rule-https" {
   resource_group_name            = "${azurerm_resource_group.rg.name}"
   loadbalancer_id                = "${azurerm_lb.cf-balancer.id}"
@@ -40,6 +48,7 @@ resource "azurerm_lb_rule" "cf-balancer-rule-https" {
   frontend_port                  = 443
   backend_port                   = 443
   frontend_ip_configuration_name = "${azurerm_public_ip.cf-balancer-ip.name}"
+  probe_id                       = "${azurerm_lb_probe.web-https-probe.id}"
 }
 
 resource "azurerm_lb_rule" "cf-balancer-rule-http" {
@@ -50,4 +59,5 @@ resource "azurerm_lb_rule" "cf-balancer-rule-http" {
   frontend_port                  = 80
   backend_port                   = 80
   frontend_ip_configuration_name = "${azurerm_public_ip.cf-balancer-ip.name}"
+  probe_id                       = "${azurerm_lb_probe.web-http-probe.id}"
 }
