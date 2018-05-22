@@ -70,6 +70,16 @@ variable "use_vcontainer" {
   description = "enabled or disabled"
 }
 
+variable "aci_smb_proxy_ip" {
+  type    = "string"
+  default = ""
+}
+
+variable "aci_smb_proxy_port" {
+  type    = "string"
+  default = ""
+}
+
 variable "debug_mode" {
   type        = "string"
   default     = "disabled"
