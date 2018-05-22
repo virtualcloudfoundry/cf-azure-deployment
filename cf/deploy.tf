@@ -2,6 +2,7 @@ resource "azurerm_virtual_machine_extension" "deploy" {
   name                 = "hostname"
   location             = "${var.location}"
   resource_group_name  = "${azurerm_resource_group.rg.name}"
+  depends_on           = ["azurerm_virtual_machine.bastion", "azurerm_lb_rule.cf-balancer-rule-http", "azurerm_lb_rule.cf-balancer-rule-https"]
   virtual_machine_name = "${azurerm_virtual_machine.bastion.name}"
   publisher            = "Microsoft.Azure.Extensions"
   type                 = "CustomScript"

@@ -246,7 +246,7 @@ EOF
 fi
 
 if [ "${use_vcontainer}" == "enabled" ]; then
-  aci_location = $(get_setting ACI_LOCATION)
+  aci_location=$(get_setting ACI_LOCATION)
   cat >> "$home_dir/deploy_cloud_foundry.sh" << EOF
   -v tenant_id=${tenant_id} \\
   -v client_id=${client_id} \\
