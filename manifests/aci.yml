@@ -33,3 +33,28 @@
     url: https://andliuonlinefiles.blob.core.windows.net/cf-private-releases/diego-release-vcontainer.tgz
     version: 2.6.0+dev.1526887536
     sha1: dac2747530d636f557d9ad34a00ff6a52ff39374
+
+- type: replace
+  path: /variables/-
+  value:
+    name: diego_vcontainer_server
+    type: certificate
+    options:
+      ca: service_cf_internal_ca
+      common_name: vcontainer.service.cf.internal
+      extended_key_usage:
+      - server_auth
+      alternative_names:
+      - "*.vcontainer.service.cf.internal"
+      - vcontainer.service.cf.internal
+
+- type: replace
+  path: /variables/-
+  value:
+    name: diego_vcontainer_client
+    type: certificate
+    options:
+      ca: service_cf_internal_ca
+      common_name: vcontainer client
+      extended_key_usage:
+      - client_auth
