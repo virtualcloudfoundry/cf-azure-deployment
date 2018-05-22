@@ -4,6 +4,7 @@ resource "azurerm_storage_account" "bosh-default-storage" {
   account_tier             = "Standard"
   account_replication_type = "LRS"
   location                 = "${var.location}"
+  depends_on               = ["azurerm_resource_group.rg"]
 
   tags {
     environment = "${module.variables.environment-tag}"
@@ -17,6 +18,7 @@ resource "azurerm_storage_account" "aci-default-storage" {
   account_tier             = "Standard"
   account_replication_type = "LRS"
   location                 = "${var.location}"
+  depends_on               = ["azurerm_resource_group.rg"]
 
   tags {
     environment = "${module.variables.environment-tag}"
