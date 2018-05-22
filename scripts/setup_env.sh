@@ -258,6 +258,14 @@ if [ "${use_vcontainer}" == "enabled" ]; then
   -v aci_storage_secret="$(get_setting ACI_STORAGE_ACCOUNT_KEY)" \\
   -o ~/example_manifests/aci.yml \\
 EOF
+  smb_proxy_ip=$(get_setting SMB_PROXY_IP)
+  if [[ ! -z "${smb_proxy_ip}" ]]; then
+    cat >> "$home_dir/deploy_cloud_foundry.sh" << EOF
+  -v smb_proxy_ip="$(get_setting SMB_PROXY_IP)" \\
+  -v smb_proxy_port="$(get_setting SMB_PROXY_PORT)" \\
+  -o ~/example_manifests/aci-use-smb-proxy.yml \\
+EOF
+  fi
 else
   cat >> "$home_dir/deploy_cloud_foundry.sh" << EOF
   -o ~/example_manifests/no-aci.yml \\

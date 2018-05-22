@@ -92,7 +92,9 @@ resource "azurerm_virtual_machine" "bastion" {
       "ACI_LOCATION": "${var.location}",
       "ACI_RESOURCE_GROUP": "${azurerm_resource_group.rg.name}",
       "ACI_STORAGE_ACCOUNT_NAME":  "${join("", azurerm_storage_account.aci-default-storage.*.name)}",
-      "ACI_STORAGE_ACCOUNT_KEY": "${join("", azurerm_storage_account.aci-default-storage.*.primary_access_key)}"
+      "ACI_STORAGE_ACCOUNT_KEY": "${join("", azurerm_storage_account.aci-default-storage.*.primary_access_key)}",
+      "SMB_PROXY_IP": "${var.aci_smb_proxy_ip}",
+      "SMB_PROXY_PORT": "${var.aci_smb_proxy_port}"
     }
 CUSTOM_DATA
   }

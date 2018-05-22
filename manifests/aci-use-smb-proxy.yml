@@ -1,0 +1,5 @@
+- type: replace
+  path: /instance_groups/name=diego-cell/jobs/name=vcontainer/properties/diego/vcontainer/smb_proxy?
+  value:
+    ip: "((smb_proxy_ip))"
+    port: "((smb_proxy_port))"
