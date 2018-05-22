@@ -6,7 +6,7 @@
 
 - type: replace
   path: /instance_groups/name=diego-cell/jobs/name=vcontainer/properties/diego/vcontainer/container_service_provider?
-  value: "azure" # garden, aws or azure
+  value: "aci" # garden, aws or aci
 
 - type: replace
   path: /instance_groups/name=diego-cell/jobs/name=vcontainer/properties/diego/vcontainer/azure_container_provider_cfg?
