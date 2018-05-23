@@ -25,8 +25,8 @@
   value:
     name: diego
     url: https://andliuonlinefiles.blob.core.windows.net/cf-private-releases/diego-release-vcontainer.tgz
-    version: 2.6.0+dev.1526887536
-    sha1: dac2747530d636f557d9ad34a00ff6a52ff39374
+    version: 2.6.0+dev.1527041819
+    sha1: f14eacddea9f1fc398d017b292e48a36e3aa5029
 
 - type: replace
   path: /variables/-
