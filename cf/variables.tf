@@ -32,7 +32,7 @@ variable "ssh_public_key_filename" {
 
 variable "location" {
   type    = "string"
-  default = "eastasia"
+  default = "westus"
 }
 
 variable "prefix" {
