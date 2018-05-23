@@ -82,19 +82,7 @@ resource "azurerm_network_security_group" "cf" {
   depends_on          = ["azurerm_resource_group.rg"]
 
   security_rule {
-    name                       = "ssh"
-    priority                   = 100
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "2222"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
-  }
-
-  security_rule {
-    name                       = "bosh-agent"
+    name                       = "cf-https"
     priority                   = 101
     direction                  = "Inbound"
     access                     = "Allow"
@@ -106,7 +94,7 @@ resource "azurerm_network_security_group" "cf" {
   }
 
   security_rule {
-    name                       = "bosh-director"
+    name                       = "cf-log"
     priority                   = 102
     direction                  = "Inbound"
     access                     = "Allow"
@@ -118,13 +106,25 @@ resource "azurerm_network_security_group" "cf" {
   }
 
   security_rule {
-    name                       = "dns"
+    name                       = "cf-http"
     priority                   = 103
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "80"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "Allow cf-ssh"
+    priority                   = 104
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "2222"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
