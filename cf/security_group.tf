@@ -118,7 +118,7 @@ resource "azurerm_network_security_group" "cf" {
   }
 
   security_rule {
-    name                       = "Allow cf-ssh"
+    name                       = "cf-ssh"
     priority                   = 104
     direction                  = "Inbound"
     access                     = "Allow"
