@@ -1,0 +1,2 @@
+## How to Deploy CFCR
+terraform apply -var prefix="YOUR PREFIX FOR RESOURCES" -var subscription_id="YOUR SUBSCRIPTION ID" -var client_id="YOUR SERVICE PRINCIPAL ID" -var client_secret="YOUR SERVICE PRINCIPAL PASSWORD" -var tenant_id="YOUR TENANT ID" -var ssh_user_username="cfuser" -var ssh_public_key_filename="./ssh_key.pub"
