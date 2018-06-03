@@ -121,7 +121,7 @@ chmod a+x /usr/bin/set_iaas_routing
 
 
 # Get kubo-deployment
-wget https://opensourcerelease.blob.core.windows.net/alphareleases/kubo-deployment.tgz
+wget https://opensourcerelease.blob.core.windows.net/internalreleases/kubo-deployment.tgz
 mkdir -p /share
 tar -xvf kubo-deployment.tgz -C /share
 chmod -R 777 /share
