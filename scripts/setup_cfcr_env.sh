@@ -73,7 +73,8 @@ sed -i -e 's/^\(vnet_name:\).*\(#.*\)/\1 '$vnet_name' \2/' "$1"
 sed -i -e 's/^\(subnet_name:\).*\(#.*\)/\1 '$cfcr_subnet_name' \2/' "$1"
 sed -i -e 's/^\(location:\).*\(#.*\)/\1 '$location' \2/' "$1"
 sed -i -e 's/^\(default_security_group:\).*\(#.*\)/\1 '$cfcr_master_sg_name' \2/' "$1"
-
+sed -i -e 's/^\(master_vm_type:\).*\(#.*\)/\1 'master' \2/' "$1"
+sed -i -e 's/^\(worker_vm_type:\).*\(#.*\)/\1 'worker' \2/' "$1"
 # Generic updates
 sed -i -e 's/^\(internal_ip:\).*\(#.*\)/\1 '$cfcr_internal_ip' \2/' "$1"
 sed -i -e 's=^\(internal_cidr:\).*\(#.*\)=\1 '$cfcr_subnet_address_range' \2=' "$1"
