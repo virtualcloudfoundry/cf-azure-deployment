@@ -17,7 +17,7 @@ resource "azurerm_subnet" "bosh-subnet" {
 }
 
 resource "azurerm_subnet" "cfcr-subnet" {
-  name                 = "${module.variables.cf-subnet-name}"
+  name                 = "${module.variables.cfcr-subnet-name}"
   resource_group_name  = "${azurerm_resource_group.rg.name}"
   depends_on           = ["azurerm_virtual_network.vnet"]
   virtual_network_name = "${azurerm_virtual_network.vnet.name}"

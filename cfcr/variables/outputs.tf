@@ -14,8 +14,8 @@ output "bosh-subnet-name" {
   value = "${var.prefix}-bosh-subnet"
 }
 
-output "cf-subnet-name" {
-  value = "${var.prefix}-cf-subnet"
+output "cfcr-subnet-name" {
+  value = "${var.prefix}-cfcr-subnet"
 }
 
 output "bastion-name" {
