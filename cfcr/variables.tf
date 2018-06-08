@@ -85,3 +85,9 @@ variable "allow_privileged_containers" {
   default     = "true"
   description = "true or false"
 }
+
+variable "disable_deny_escalating_exec" {
+  type        = "string"
+  default     = "true"
+  description = "true or false"
+}

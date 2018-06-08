@@ -90,7 +90,8 @@ resource "azurerm_virtual_machine" "bastion" {
       "SERVICE_PRINCIPAL_TYPE": "Password",
       "USE_AVAILABILITY_ZONES": "${var.use_availability_zones}",
       "DEBUG_MODE": "${var.debug_mode}",
-      "ALLOW_PRIVILEGED_CONTAINERS": "${var.allow_privileged_containers}"
+      "ALLOW_PRIVILEGED_CONTAINERS": "${var.allow_privileged_containers}",
+      "DISABLE_DENY_ESCALATING_EXEC": "${var.disable_deny_escalating_exec}"
     }
 CUSTOM_DATA
   }
