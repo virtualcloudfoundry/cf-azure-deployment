@@ -79,3 +79,15 @@ variable "debug_mode" {
   default     = "disabled"
   description = "enabled or disabled"
 }
+
+variable "allow_privileged_containers" {
+  type        = "string"
+  default     = "true"
+  description = "true or false"
+}
+
+variable "disable_deny_escalating_exec" {
+  type        = "string"
+  default     = "true"
+  description = "true or false"
+}

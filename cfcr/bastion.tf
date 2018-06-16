@@ -89,7 +89,9 @@ resource "azurerm_virtual_machine" "bastion" {
       "BOSH_VM_SIZE": "${var.bosh_vm_size}",
       "SERVICE_PRINCIPAL_TYPE": "Password",
       "USE_AVAILABILITY_ZONES": "${var.use_availability_zones}",
-      "DEBUG_MODE": "${var.debug_mode}"
+      "DEBUG_MODE": "${var.debug_mode}",
+      "ALLOW_PRIVILEGED_CONTAINERS": "${var.allow_privileged_containers}",
+      "DISABLE_DENY_ESCALATING_EXEC": "${var.disable_deny_escalating_exec}"
     }
 CUSTOM_DATA
   }
