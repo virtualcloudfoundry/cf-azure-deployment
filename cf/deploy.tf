@@ -10,8 +10,7 @@ resource "azurerm_virtual_machine_extension" "deploy" {
 
   settings = <<SETTINGS
     {
-        "fileUris": ["https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/scripts/setup_env.sh",
-                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/scripts/utils.sh",
+        "fileUris": ["https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/scripts/utils.sh",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/manifests/bosh.yml",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/manifests/cpi.yml",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/manifests/custom-cpi-release.yml",
@@ -30,6 +29,7 @@ resource "azurerm_virtual_machine_extension" "deploy" {
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/manifests/aci.yml",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/manifests/no-aci.yml",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/manifests/debug.yml",
+                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/scripts/setup_env.sh",
                     "https://s3-us-west-1.amazonaws.com/cf-cli-releases/releases/v6.34.1/cf-cli-installer_6.34.1_x86-64.deb"]
     }
 SETTINGS
