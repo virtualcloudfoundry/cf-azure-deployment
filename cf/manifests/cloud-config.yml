@@ -50,6 +50,11 @@ networks:
   type: vip
 
 vm_types:
+- name: debug
+  cloud_properties:
+    instance_type: Basic_A1
+    ephemeral_disk:
+      size: 10240
 - name: minimal
   cloud_properties:
     instance_type: Standard_D1_v2
