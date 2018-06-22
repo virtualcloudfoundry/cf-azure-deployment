@@ -18,6 +18,10 @@ output "cfcr-subnet-name" {
   value = "${var.prefix}-cfcr-subnet"
 }
 
+output "prv-dns-name" {
+  value = "${var.prefix}-dns.internal"
+}
+
 output "bastion-name" {
   value = "${var.prefix}-bastion"
 }

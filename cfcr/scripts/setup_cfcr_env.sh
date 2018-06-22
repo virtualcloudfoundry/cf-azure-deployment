@@ -34,6 +34,10 @@ kubernetes_master_port=$(get_setting KUBERNETES_MASTER_PORT)
 master_target_pool=$(get_setting MASTER_TARGET_POOL)
 allow_privileged_containers=$(get_setting ALLOW_PRIVILEGED_CONTAINERS)
 disable_deny_escalating_exec=$(get_setting DISABLE_DENY_ESCALATING_EXEC)
+admin_user_name=$(get_setting ADMIN_USER_NAME)
+auto_deploy_bosh=$(get_setting AUTO_DEPLOY_BOSH)
+auto_deploy_cfcr=$(get_setting AUTO_DEPLOY_CFCR)
+
 cat > /etc/profile.d/bosh.sh <<EOF
 #!/bin/bash
 
@@ -56,6 +60,9 @@ export kubernetes_master_port=$kubernetes_master_port
 export master_target_pool=$master_target_pool
 export allow_privileged_containers=$allow_privileged_containers
 export disable_deny_escalating_exec=$disable_deny_escalating_exec
+export admin_user_name=$admin_user_name
+export auto_deploy_bosh=$auto_deploy_bosh
+export auto_deploy_cfcr=$auto_deploy_cfcr
 EOF
 
 cat > /usr/bin/update_azure_env <<'EOF'
@@ -77,6 +84,7 @@ sed -i -e 's/^\(master_vm_type:\).*\(#.*\)/\1 'master' \2/' "$1"
 sed -i -e 's/^\(worker_vm_type:\).*\(#.*\)/\1 'worker' \2/' "$1"
 sed -i -e 's/^\(allow_privileged_containers:\).*\(#.*\)/\1 '$allow_privileged_containers' \2/' "$1"
 sed -i -e 's/^\(disable_deny_escalating_exec:\).*\(#.*\)/\1 '$disable_deny_escalating_exec' \2/' "$1"
+
 # Generic updates
 sed -i -e 's/^\(internal_ip:\).*\(#.*\)/\1 '$cfcr_internal_ip' \2/' "$1"
 sed -i -e 's=^\(internal_cidr:\).*\(#.*\)=\1 '$cfcr_subnet_address_range' \2=' "$1"
@@ -124,7 +132,7 @@ chmod a+x /usr/bin/set_iaas_routing
 
 
 # Get kubo-deployment
-wget https://opensourcerelease.blob.core.windows.net/alphareleases/kubo-deployment.tgz
+wget https://opensourcerelease.blob.core.windows.net/internalreleases/kubo-deployment.tgz
 mkdir -p /share
 tar -xvf kubo-deployment.tgz -C /share
 chmod -R 777 /share
@@ -140,3 +148,54 @@ chmod a+x /usr/bin/kubectl
 curl -L https://github.com/cloudfoundry-incubator/credhub-cli/releases/download/1.4.0/credhub-linux-1.4.0.tgz | tar zxv
 chmod a+x credhub
 mv credhub /usr/bin
+
+if [ "$auto_deploy_bosh" != "enabled" ]; then
+  echo "The BOSH director won't be deployed automatically. Finish."
+  exit 0
+fi
+
+cat > /usr/bin/deploy_bosh.sh <<'EOF'
+#!/bin/bash
+source /usr/bin/deploy_bosh.sh
+home_dir="/home/$admin_user_name"
+export kubo_envs="$home_dir/kubo-env"
+export kubo_env_name=kubo
+export kubo_env_path="${kubo_envs}/${kubo_env_name}"
+mkdir -p "${kubo_envs}"
+/share/kubo-deployment/bin/generate_env_config "${kubo_envs}" "${kubo_env_name}" azure
+/usr/bin/update_azure_env "${kubo_env_path}/director.yml"
+/usr/bin/update_azure_secrets "${kubo_env_path}/director-secrets.yml"
+/usr/bin/set_iaas_routing "${kubo_env_path}/director.yml"
+export CLOUD_CONFIG_OPS_FILES="/share/kubo-deployment/manifests/ops-files/misc/small-vm.yml"
+export BOSH_EXTRA_OPS='--ops-file \"/share/kubo-deployment/bosh-deployment/jumpbox-user.yml\"'
+echo $BOSH_EXTRA_OPS
+/share/kubo-deployment/bin/deploy_bosh "${kubo_env_path}"
+EOF
+chmod a+x /usr/bin/deploy_bosh.sh
+
+echo "Starting to deploy BOSH director..."
+su - $username -c "/usr/bin/deploy_bosh.sh"
+echo "The BOSH director is deployed."
+
+if [ "$auto_deploy_cfcr" != "enabled" ]; then
+  echo "The CFCR won't be deployed automatically. Finish."
+  exit 0
+fi
+
+echo "Starting to deploy CFCR, which would take some time..."
+cat > /usr/bin/deploy_cfcr.sh <<'EOF'
+#!/bin/bash
+source /usr/bin/deploy_bosh.sh
+home_dir="/home/$admin_user_name"
+export kubo_envs="$home_dir/kubo-env"
+export kubo_env_name=kubo
+export kubo_env_path="${kubo_envs}/${kubo_env_name}"
+BOSH_ENV=${kubo_env_path}
+source /share/kubo-deployment/bin/set_bosh_environment
+export KUBO_EXTRA_OPS="--ops-file=/share/kubo-deployment/manifests/ops-files/misc/scale-to-one-az.yml"
+/share/kubo-deployment/bin/deploy_k8s $home_dir/kubo-env/kubo my-cluster
+EOF
+chmod a+x /usr/bin/deploy_cfcr.sh
+su - $username -c "/usr/bin/deploy_cfcr.sh"
+echo "Finish"
+exit 0
