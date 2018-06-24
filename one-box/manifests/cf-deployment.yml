@@ -153,32 +153,6 @@ instance_groups:
           consul_enabled: true
           consul_service_name: "sql-db"
           health_port: 1936
-# - name: diego-api
-#   migrated_from:
-#   - name: diego-bbs
-#   azs:
-#   - z1
-#   - z2
-#   instances: 2
-#   vm_type: small
-#   stemcell: default
-#   update:
-#     serial: true
-#   networks:
-#   - name: default
-#   jobs:
-#   - name: consul_agent
-#     release: consul
-#     consumes:
-#       consul_common: {from: consul_common_link}
-#       consul_server: nil
-#       consul_client: {from: consul_client_link}
-#     properties:
-#       consul:
-#         agent:
-#           services:
-#             silk-controller:
-#               name: silk-controller
   - name: cfdot
     release: diego
     properties:
@@ -314,7 +288,7 @@ instance_groups:
               certificate: "((uaa_login_saml.certificate))"
               passphrase: ""
       uaa:
-        port: 8080 # port exposed
+        port: 8081 # port exposed
         ssl:
           port: 8443 # port exposed
         sslCertificate: "((uaa_ssl.certificate))"
