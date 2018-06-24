@@ -5,9 +5,9 @@
 - type: replace
   path: /instance_groups/name=all-in-one/instances
   value: 1
-- type: replace
-  path: /instance_groups/name=database/instances
-  value: 1
+# - type: replace
+#   path: /instance_groups/name=database/instances
+#   value: 1
 # - type: replace
 #   path: /instance_groups/name=consul/instances
 #   value: 1
@@ -51,9 +51,9 @@
 - type: replace
   path: /instance_groups/name=all-in-one/azs
   value: [ z1 ]
-- type: replace
-  path: /instance_groups/name=database/azs
-  value: [ z1 ]
+# - type: replace
+#   path: /instance_groups/name=database/azs
+#   value: [ z1 ]
 # - type: replace
 #   path: /instance_groups/name=nats/azs
 #   value: [ z1 ]
