@@ -17,9 +17,9 @@
 # - type: replace
 #   path: /instance_groups/name=diego-api/vm_type
 #   value: debug
-- type: replace
-  path: /instance_groups/name=uaa/vm_type
-  value: debug
+# - type: replace
+#   path: /instance_groups/name=uaa/vm_type
+#   value: debug
 - type: replace
   path: /instance_groups/name=scheduler/vm_type
   value: debug

@@ -61,6 +61,7 @@ instance_groups:
           services:
             silk-controller:
               name: silk-controller
+            uaa: {}
         encrypt_keys:
         - "((consul_encrypt_key))"
         agent_cert: "((consul_agent.certificate))"
@@ -84,7 +85,7 @@ instance_groups:
     properties:
       scalablesyslog:
         adapter:
-          health: 8080 # listen on.
+          health: 8070 # listen on.
           port: 4443 # listen on.
           tls:
             ca: "((loggregator_ca.certificate))"
@@ -250,27 +251,6 @@ instance_groups:
         ca_cert: "((loggregator_ca.certificate))"
         cert: "((loggregator_tls_metron.certificate))"
         key: "((loggregator_tls_metron.private_key))"
-- name: uaa
-  azs:
-  - z1
-  - z2
-  instances: 2
-  vm_type: minimal
-  stemcell: default
-  networks:
-  - name: default
-  jobs:
-  - name: consul_agent
-    release: consul
-    consumes:
-      consul_common: {from: consul_common_link}
-      consul_server: nil
-      consul_client: {from: consul_client_link}
-    properties:
-      consul:
-        agent:
-          services:
-            uaa: {}
   - name: uaa
     release: uaa
     properties:
@@ -407,7 +387,7 @@ instance_groups:
             name: uaa-healthcheck
             script_path: "/var/vcap/jobs/uaa/bin/health_check"
           name: uaa
-          port: 8080
+          port: 8081 # uaa occupied 8080
           registration_interval: 10s
           tags:
             component: uaa
@@ -428,56 +408,6 @@ instance_groups:
           statsd_injector:
             cert: "((loggregator_tls_statsdinjector.certificate))"
             key: "((loggregator_tls_statsdinjector.private_key))"
-- name: singleton-blobstore  # will be removed by use-azure-storage-blobstore.yml
-  migrated_from:
-  - name: blobstore
-  azs:
-  - z1
-  instances: 1
-  vm_type: small
-  persistent_disk_type: 100GB
-  stemcell: default
-  update:
-    serial: true
-  networks:
-  - name: default
-  jobs:
-  - name: consul_agent
-    release: consul
-    consumes:
-      consul_common: {from: consul_common_link}
-      consul_server: nil
-      consul_client: {from: consul_client_link}
-    properties:
-      consul:
-        agent:
-          services:
-            blobstore: {}
-  - name: blobstore
-    release: capi
-    properties:
-      system_domain: "((system_domain))"
-      blobstore:
-        admin_users:
-        - username: blobstore-user
-          password: "((blobstore_admin_users_password))"
-        secure_link:
-          secret: "((blobstore_secure_link_secret))"
-        tls:
-          cert: "((blobstore_tls.certificate))"
-          private_key: "((blobstore_tls.private_key))"
-  - name: route_registrar
-    release: routing
-    properties:
-      route_registrar:
-        routes:
-        - name: blobstore
-          port: 8080
-          registration_interval: 20s
-          tags:
-            component: blobstore
-          uris:
-          - blobstore.((system_domain))
 - name: api
   azs:
   - z1
@@ -1315,6 +1245,56 @@ instance_groups:
           uris:
           - doppler.((system_domain))
           - "*.doppler.((system_domain))"
+- name: singleton-blobstore  # will be removed by use-azure-storage-blobstore.yml
+  migrated_from:
+  - name: blobstore
+  azs:
+  - z1
+  instances: 1
+  vm_type: small
+  persistent_disk_type: 100GB
+  stemcell: default
+  update:
+    serial: true
+  networks:
+  - name: default
+  jobs:
+  - name: consul_agent
+    release: consul
+    consumes:
+      consul_common: {from: consul_common_link}
+      consul_server: nil
+      consul_client: {from: consul_client_link}
+    properties:
+      consul:
+        agent:
+          services:
+            blobstore: {}
+  - name: blobstore
+    release: capi
+    properties:
+      system_domain: "((system_domain))"
+      blobstore:
+        admin_users:
+        - username: blobstore-user
+          password: "((blobstore_admin_users_password))"
+        secure_link:
+          secret: "((blobstore_secure_link_secret))"
+        tls:
+          cert: "((blobstore_tls.certificate))"
+          private_key: "((blobstore_tls.private_key))"
+  - name: route_registrar
+    release: routing
+    properties:
+      route_registrar:
+        routes:
+        - name: blobstore
+          port: 8080
+          registration_interval: 20s
+          tags:
+            component: blobstore
+          uris:
+          - blobstore.((system_domain))
 
 variables:
 - name: blobstore_admin_users_password
