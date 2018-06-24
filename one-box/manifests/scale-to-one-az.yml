@@ -14,9 +14,9 @@
 # - type: replace
 #   path: /instance_groups/name=nats/instances
 #   value: 1
-- type: replace
-  path: /instance_groups/name=diego-api/instances
-  value: 1
+# - type: replace
+#   path: /instance_groups/name=diego-api/instances
+#   value: 1
 - type: replace
   path: /instance_groups/name=uaa/instances
   value: 1
@@ -57,9 +57,9 @@
 # - type: replace
 #   path: /instance_groups/name=nats/azs
 #   value: [ z1 ]
-- type: replace
-  path: /instance_groups/name=diego-api/azs
-  value: [ z1 ]
+# - type: replace
+#   path: /instance_groups/name=diego-api/azs
+#   value: [ z1 ]
 - type: replace
   path: /instance_groups/name=uaa/azs
   value: [ z1 ]
