@@ -97,27 +97,6 @@ instance_groups:
             key: "((adapter_rlp_tls.private_key))"
             cn: reverselogproxy
         metric_ingress_addr: "localhost:3458"
-- name: database
-  migrated_from:
-  - name: mysql
-  - name: singleton-database
-  azs:
-  - z1
-  persistent_disk_type: 10GB
-  instances: 1
-  vm_type: small
-  stemcell: default
-  update:
-    serial: true
-  networks:
-  - name: default
-  jobs:
-  - name: consul_agent
-    release: consul
-    consumes:
-      consul_common: {from: consul_common_link}
-      consul_server: nil
-      consul_client: {from: consul_client_link}
   - name: mysql
     release: cf-mysql
     properties:
