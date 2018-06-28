@@ -36,7 +36,7 @@ resource "azurerm_virtual_machine" "bastion" {
       "SUBNET_NAME_FOR_CLOUD_FOUNDRY": "${module.namings.cf-subnet-name}",
       "SUBNET_ADDRESS_RANGE_FOR_CLOUD_FOUNDRY": "${module.it.cf-subnet-address-prefix}",
       "CLOUD_FOUNDRY_PUBLIC_IP":"${module.it.cf-public-ip-address}",
-      "LOAD_BALANCER_NAME":"${module.namings.cf-balancer-name}}",
+      "LOAD_BALANCER_NAME":"${module.namings.cf-balancer-name}",
       "NSG_NAME_FOR_BOSH": "${module.namings.bosh-sg-name}",
       "NSG_NAME_FOR_CLOUD_FOUNDRY":"${module.namings.cf-sg-name}",
       "SUBSCRIPTION_ID": "${var.subscription_id}",
