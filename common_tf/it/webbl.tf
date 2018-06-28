@@ -1,5 +1,5 @@
 resource "azurerm_public_ip" "cf-balancer-ip" {
-  name                         = "${var.prefix}-cf-public-ip"
+  name                         = "${module.namings.cf-balancer-public-ip-name}"
   location                     = "${var.location}"
   resource_group_name          = "${azurerm_resource_group.rg.name}"
   depends_on                   = ["azurerm_resource_group.rg"]
@@ -8,7 +8,7 @@ resource "azurerm_public_ip" "cf-balancer-ip" {
 }
 
 resource "azurerm_lb" "cf-balancer" {
-  name                = "${var.prefix}-cf-balancer"
+  name                = "${module.namings.cf-balancer-name}"
   location            = "${var.location}"
   sku                 = "Standard"
   resource_group_name = "${azurerm_resource_group.rg.name}"

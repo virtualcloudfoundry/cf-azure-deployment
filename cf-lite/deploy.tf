@@ -10,8 +10,10 @@ resource "azurerm_virtual_machine_extension" "deploy" {
 
   settings = <<SETTINGS
     {
-        "fileUris": ["https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/common_scripts/utils.sh",
+        "fileUris": [
+                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/common_scripts/utils.sh",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/common_manifests/bosh.yml",
+                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/common_manifests/cloud-config.yml",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/common_manifests/cpi.yml",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/common_manifests/custom-cpi-release.yml",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/common_manifests/custom-environment.yml",
@@ -20,16 +22,12 @@ resource "azurerm_virtual_machine_extension" "deploy" {
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/common_manifests/keep-failed-or-unreachable-vms.yml",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/common_manifests/use-compiled-releases.yml",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/common_manifests/use-managed-disks.yml",
-                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/manifests/use-service-principal-with-certificate.yml",
-                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/manifests/cloud-config.yml",
-                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/manifests/cf-deployment.yml",
-                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/manifests/azure.yml",
-                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/manifests/scale-to-one-az.yml",
-                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/manifests/use-azure-storage-blobstore.yml",
-                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/manifests/aci.yml",
-                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/manifests/no-aci.yml",
-                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/manifests/debug.yml",
-                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/scripts/setup_env.sh",
+                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf-lite/scripts/setup_env.sh",
+                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf-lite/manifests/cf-deployment.yml",
+                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf-lite/manifests/azure.yml",
+                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf-lite/manifests/scale-to-one-az.yml",
+                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf-lite/manifests/small-vm.yml",
+                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf-lite/manifests/use-azure-storage-blobstore.yml",
                     "https://s3-us-west-1.amazonaws.com/cf-cli-releases/releases/v6.34.1/cf-cli-installer_6.34.1_x86-64.deb"]
     }
 SETTINGS
