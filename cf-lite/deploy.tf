@@ -28,6 +28,7 @@ resource "azurerm_virtual_machine_extension" "deploy" {
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf-lite/manifests/scale-to-one-az.yml",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf-lite/manifests/small-vm.yml",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf-lite/manifests/use-azure-storage-blobstore.yml",
+                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf-lite/releases/all-in-one-release.tgz",
                     "https://s3-us-west-1.amazonaws.com/cf-cli-releases/releases/v6.34.1/cf-cli-installer_6.34.1_x86-64.deb"]
     }
 SETTINGS

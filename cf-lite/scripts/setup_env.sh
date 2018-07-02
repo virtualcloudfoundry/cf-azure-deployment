@@ -63,6 +63,9 @@ home_dir="/home/$username"
 manifests_dir="$home_dir/example_manifests"
 mkdir -p $manifests_dir
 cp *.yml $manifests_dir
+releases_dir="$home_dir/releases"
+mkdir -p $releases_dir
+cp *.tgz $releases_dir
 pushd $manifests_dir > /dev/null
   # Enable availability zones if needed
   use_availability_zones=$(get_setting USE_AVAILABILITY_ZONES)
