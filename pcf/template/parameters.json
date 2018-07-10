@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccountNamePrefixString": {
+            "value": "pcffunny"
+        },
+        "adminSSHKey": {
+            "value": null
+        },
+        "tenantID": {
+            "value": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+        },
+        "clientID": {
+            "value": "fdad3b33-7346-4c6c-bb00-5e76c79bbcf1"
+        },
+        "clientSecret": {
+            "value": null
+        },
+        "pivnetAPIToken": {
+            "value": "mbQsZVhhxVzzuhynftN4"
+        },
+        "location": {
+            "value": "eastasia"
+        }
+    }
+}
