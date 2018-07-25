@@ -1674,7 +1674,7 @@ releases:
   version: "1.0"
   sha1: aa70e3bc95e25fe86ab00f3b698216a24a44c9d5
 - name: all-in-one-release
-  url: file://.releases/all-in-one-release.tgz
+  url: file://./releases/all-in-one-release.tgz
   version: "0+dev.1530693588"
 stemcells:
 - alias: default
