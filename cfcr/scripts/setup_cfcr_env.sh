@@ -174,7 +174,7 @@ EOF
 chmod a+x /usr/bin/deploy_bosh.sh
 
 echo "Starting to deploy BOSH director..."
-su - $username -c "/usr/bin/deploy_bosh.sh"
+su - $admin_user_name -c "/usr/bin/deploy_bosh.sh"
 echo "The BOSH director is deployed."
 
 if [ "$auto_deploy_cfcr" != "enabled" ]; then
@@ -196,6 +196,6 @@ export KUBO_EXTRA_OPS="--ops-file=/share/kubo-deployment/manifests/ops-files/mis
 /share/kubo-deployment/bin/deploy_k8s $home_dir/kubo-env/kubo my-cluster
 EOF
 chmod a+x /usr/bin/deploy_cfcr.sh
-su - $username -c "/usr/bin/deploy_cfcr.sh"
+su - $admin_user_name -c "/usr/bin/deploy_cfcr.sh"
 echo "Finish"
 exit 0
