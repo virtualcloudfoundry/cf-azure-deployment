@@ -166,7 +166,7 @@ mkdir -p "${kubo_envs}"
 /usr/bin/update_azure_secrets "${kubo_env_path}/director-secrets.yml"
 /usr/bin/set_iaas_routing "${kubo_env_path}/director.yml"
 export CLOUD_CONFIG_OPS_FILES="/share/kubo-deployment/manifests/ops-files/misc/small-vm.yml"
-export BOSH_EXTRA_OPS='--ops-file \"/share/kubo-deployment/bosh-deployment/jumpbox-user.yml\"'
+export BOSH_EXTRA_OPS='--ops-file "/share/kubo-deployment/bosh-deployment/jumpbox-user.yml"'
 echo $BOSH_EXTRA_OPS
 /share/kubo-deployment/bin/deploy_bosh "${kubo_env_path}"
 EOF
