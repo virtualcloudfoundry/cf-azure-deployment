@@ -1678,5 +1678,5 @@ releases:
   version: "0+dev.1530693588"
 stemcells:
 - alias: default
-  os: ubuntu-trusty
-  version: "3586.24"
+  os: ubuntu-xenial
+  version: "2222.88"

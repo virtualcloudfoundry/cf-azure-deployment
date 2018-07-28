@@ -1733,5 +1733,5 @@ releases:
   sha1: aa70e3bc95e25fe86ab00f3b698216a24a44c9d5
 stemcells:
 - alias: default
-  os: ubuntu-trusty
-  version: "3586.24"
+  os: ubuntu-xenial
+  version: "2222.88"
