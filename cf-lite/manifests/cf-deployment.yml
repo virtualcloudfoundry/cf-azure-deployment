@@ -1679,4 +1679,4 @@ releases:
 stemcells:
 - alias: default
   os: ubuntu-xenial
-  version: "2222.88"
+  version: "2222.89"
