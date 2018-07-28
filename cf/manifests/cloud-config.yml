@@ -52,7 +52,7 @@ networks:
 vm_types:
 - name: debug
   cloud_properties:
-    instance_type: Basic_A1
+    instance_type: Standard_A1_v2
     ephemeral_disk:
       size: 10240
 - name: minimal
