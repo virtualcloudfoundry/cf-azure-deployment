@@ -156,7 +156,6 @@ fi
 
 cat > /usr/bin/deploy_bosh.sh <<'EOF'
 #!/bin/bash
-source /usr/bin/deploy_bosh.sh
 home_dir="/home/$admin_user_name"
 export kubo_envs="$home_dir/kubo-env"
 export kubo_env_name=kubo
