@@ -182,7 +182,6 @@ bosh -n -d cf deploy ~/example_manifests/cf-deployment.yml \\
 EOF
 
 cat >> "$home_dir/deploy_cloud_foundry.sh" << EOF
-  -o ~/example_manifests/use-compiled-releases.yml \\
   -o ~/example_manifests/use-azure-storage-blobstore.yml \\
   -v system_domain=$(get_setting CLOUD_FOUNDRY_PUBLIC_IP).xip.io \\
   -v environment=$(get_setting ENVIRONMENT) \\
