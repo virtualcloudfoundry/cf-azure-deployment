@@ -41,8 +41,8 @@ instance_groups:
   - z3
   resource_pool: vms
   instances: 3
-  persistent_disk_type: 100GB
-  vm_type: minimal
+  # persistent_disk_type: 100GB
+  # vm_type: minimal
   vm_extensions:
   - 100GB_ephemeral_disk
   - cf-router-network-properties
