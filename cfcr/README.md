@@ -24,5 +24,5 @@ source /share/kubo-deployment/bin/set_bosh_environment
 kubectl get pods --namespace=kube-system
 
 c. run the test app
-kubectl create -f https://raw.githubusercontent.com/andyzhangx/demo/master/pv/storageclass-azurefile.yaml
-kubectl create -f https://raw.githubusercontent.com/andyzhangx/demo/master/demo/nginx-server/nginx-server-azurefile.yaml
+kubectl create -f https://raw.githubusercontent.com/andyzhangx/demo/test_disable_auto_update/pv/storageclass-azurefile.yaml
+kubectl create -f https://raw.githubusercontent.com/andyzhangx/demo/test_disable_auto_update/demo/nginx-server/nginx-server-azurefile.yaml
