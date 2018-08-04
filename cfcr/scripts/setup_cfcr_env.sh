@@ -149,11 +149,7 @@ curl -L https://github.com/cloudfoundry-incubator/credhub-cli/releases/download/
 chmod a+x credhub
 mv credhub /usr/bin
 
-if [ "$auto_deploy_bosh" != "enabled" ]; then
-  echo "The BOSH director won't be deployed automatically. Finish."
-  exit 0
-fi
-
+# generate the bosh deployment scripts.
 cat > /usr/bin/deploy_bosh.sh <<'EOF'
 #!/bin/bash
 home_dir="/home/$admin_user_name"
@@ -172,16 +168,7 @@ echo $BOSH_EXTRA_OPS
 EOF
 chmod a+x /usr/bin/deploy_bosh.sh
 
-echo "Starting to deploy BOSH director..."
-su - $admin_user_name -c "/usr/bin/deploy_bosh.sh"
-echo "The BOSH director is deployed."
-
-if [ "$auto_deploy_cfcr" != "enabled" ]; then
-  echo "The CFCR won't be deployed automatically. Finish."
-  exit 0
-fi
-
-echo "Starting to deploy CFCR, which would take some time..."
+# generate the cfcr deployment scripts.
 cat > /usr/bin/deploy_cfcr.sh <<'EOF'
 #!/bin/bash
 source /usr/bin/deploy_bosh.sh
@@ -195,6 +182,22 @@ export KUBO_EXTRA_OPS="--ops-file=/share/kubo-deployment/manifests/ops-files/mis
 /share/kubo-deployment/bin/deploy_k8s $home_dir/kubo-env/kubo my-cluster
 EOF
 chmod a+x /usr/bin/deploy_cfcr.sh
+
+if [ "$auto_deploy_bosh" != "enabled" ]; then
+  echo "The BOSH director won't be deployed automatically. Finish."
+  exit 0
+fi
+
+echo "Starting to deploy BOSH director..."
+su - $admin_user_name -c "/usr/bin/deploy_bosh.sh"
+echo "The BOSH director is deployed."
+
+if [ "$auto_deploy_cfcr" != "enabled" ]; then
+  echo "The CFCR won't be deployed automatically. Finish."
+  exit 0
+fi
+
+echo "Starting to deploy CFCR, which would take some time..."
 su - $admin_user_name -c "/usr/bin/deploy_cfcr.sh"
 echo "Finish"
 exit 0
