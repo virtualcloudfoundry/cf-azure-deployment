@@ -31,6 +31,9 @@ function client_secret_or_certificate() {
   echo ${base64_encoded_client_secret_or_certificate} | base64 --decode
 }
 
+# VMSS
+use_vmss=$(get_setting USE_VMSS)
+
 # https://bosh.io/docs/cli-v2-install/#additional-dependencies
 echo "Installing OS specified dependencies for bosh create-env command"
 retryop "apt-get update && apt-get install -y build-essential zlibc zlib1g-dev ruby ruby-dev openssl libxslt-dev libxml2-dev libssl-dev libreadline6 libreadline6-dev libyaml-dev libsqlite3-dev sqlite3"
@@ -54,7 +57,7 @@ default_storage_account=$(get_setting DEFAULT_STORAGE_ACCOUNT_NAME)
 default_storage_access_key=$(get_setting DEFAULT_STORAGE_ACCESS_KEY)
 endpoint_suffix=$(get_setting SERVICE_HOST_BASE)
 connection_string="DefaultEndpointsProtocol=https;AccountName=${default_storage_account};AccountKey=${default_storage_access_key};EndpointSuffix=${endpoint_suffix}"
-if [ "$environment" = "AzureStack" ]; then
+if [ "$environment" == "AzureStack" ]; then
   cat /var/lib/waagent/Certificates.pem >> /etc/ssl/certs/ca-certificates.crt
   export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
   az cloud update --profile 2017-03-09-profile
@@ -95,7 +98,7 @@ certificate: |-
 $(client_secret_or_certificate | sed 's/^/  /')
 EOF
   fi
-  if [ "$environment" = "AzureStack" ]; then
+  if [ "$environment" == "AzureStack" ]; then
     if [ "$(get_setting AZURE_STACK_CA_ROOT_CERTIFICATE | base64 --decode)" = "" ]; then
       cat > azure-stack-ca-cert.yml << EOF
 ca_cert: |-
@@ -147,6 +150,18 @@ bosh create-env ~/example_manifests/bosh.yml \\
   -v client_id=${client_id} \\
 EOF
 
+if [ "$use_vmss" == "enabled" ]; then
+  cat >> "$home_dir/deploy_bosh.sh" << EOF
+  -v use_config_disk="true" \\
+  -v use_vmss="true" \\
+EOF
+else
+  cat >> "$home_dir/deploy_bosh.sh" << EOF
+  -v use_config_disk="false" \\
+  -v use_vmss="false" \\
+EOF
+fi
+
 if [ "${service_principal_type}" == "Password" ]; then
   cat >> "$home_dir/deploy_bosh.sh" << EOF
   -v client_secret="$(client_secret_or_certificate)" \\
@@ -158,13 +173,13 @@ elif [ "${service_principal_type}" == "Certificate" ]; then
 EOF
 fi
 
-if [ "$environment" = "AzureChinaCloud" ]; then
+if [ "$environment" == "AzureChinaCloud" ]; then
   cat >> "$home_dir/deploy_bosh.sh" << EOF
   -o ~/example_manifests/use-managed-disks.yml \\
   -o ~/example_manifests/use-mirror-releases-for-bosh.yml \\
   -o ~/example_manifests/custom-ntp-server.yml
 EOF
-elif [ "$environment" = "AzureStack" ]; then
+elif [ "$environment" == "AzureStack" ]; then
   cat >> "$home_dir/deploy_bosh.sh" << EOF
   -v storage_account_name=$(get_setting DEFAULT_STORAGE_ACCOUNT_NAME) \\
   -o ~/example_manifests/azure-stack-properties.yml \\
@@ -206,7 +221,8 @@ bosh -n -d cf deploy ~/example_manifests/cf-deployment.yml \\
   -o ~/example_manifests/azure.yml \\
   -o ~/example_manifests/scale-to-one-az.yml \\
 EOF
-if [ "$environment" = "AzureChinaCloud" ]; then
+
+if [ "$environment" == "AzureChinaCloud" ]; then
   cat >> "$home_dir/deploy_cloud_foundry.sh" << EOF
   -o ~/example_manifests/use-azure-storage-blobstore.yml \\
   -o ~/example_manifests/use-mirror-releases-for-cf.yml \\
@@ -219,14 +235,13 @@ if [ "$environment" = "AzureChinaCloud" ]; then
   -v droplet_directory_key=cc-droplet \\
   -v resource_directory_key=cc-resource \\
 EOF
-elif [ "$environment" = "AzureStack" ]; then
+elif [ "$environment" == "AzureStack" ]; then
   cat >> "$home_dir/deploy_cloud_foundry.sh" << EOF
   -o ~/example_manifests/use-compiled-releases.yml \\
   -v system_domain=$(get_setting CLOUD_FOUNDRY_PUBLIC_IP).xip.io \\
 EOF
 else
   cat >> "$home_dir/deploy_cloud_foundry.sh" << EOF
-  -o ~/example_manifests/use-compiled-releases.yml \\
   -o ~/example_manifests/use-azure-storage-blobstore.yml \\
   -v system_domain=$(get_setting CLOUD_FOUNDRY_PUBLIC_IP).xip.io \\
   -v environment=$(get_setting ENVIRONMENT) \\

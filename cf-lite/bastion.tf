@@ -46,8 +46,8 @@ resource "azurerm_virtual_machine" "bastion" {
       "ADMIN_USER_NAME": "${var.ssh_user_username}",
       "ENVIRONMENT": "AzureCloud",
       "SERVICE_HOST_BASE": "core.windows.net",
-      "BOSH_AZURE_CPI_RELEASE_URL":"https://bosh.io/d/github.com/cloudfoundry-incubator/bosh-azure-cpi-release?v=35.2.0",
-      "BOSH_AZURE_CPI_RELEASE_SHA1":"d581c4181d31846e05e59054a15e09621f1e90b1",
+      "BOSH_AZURE_CPI_RELEASE_URL":"https://opensourcerelease.blob.core.windows.net/internalreleases/bosh-azure-cpi-vmss-release.tgz",
+      "BOSH_AZURE_CPI_RELEASE_SHA1":"09f912a2b1cfe07daf4a91d1c8ba1e430cd4d6a6",
       "STEMCELL_URL":"https://bosh.io/d/stemcells/bosh-azure-hyperv-ubuntu-trusty-go_agent?v=3586.24",
       "STEMCELL_SHA1":"ddafd98aad041bc2a92fae0168ab98f2adec331e",
       "BOSH_CLI_URL":"https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-2.0.48-linux-amd64",
@@ -55,7 +55,8 @@ resource "azurerm_virtual_machine" "bastion" {
       "AUTO_DEPLOY_CLOUD_FOUNDRY":"${var.auto_deploy_cf}",
       "BOSH_VM_SIZE": "${var.bosh_vm_size}",
       "SERVICE_PRINCIPAL_TYPE": "Password",
-      "USE_AVAILABILITY_ZONES": "${var.use_availability_zones}"
+      "USE_AVAILABILITY_ZONES": "${var.use_availability_zones}",
+      "USE_VMSS": "${var.use_vmss}"
     }
 CUSTOM_DATA
   }

@@ -35,7 +35,7 @@ disk_types:
 
 networks:
 - name: default
-  type: manual
+  type: dynamic
   subnets:
   - range: ((internal_cidr))
     gateway: ((internal_gw))
