@@ -85,3 +85,9 @@ variable "debug_mode" {
   default     = "disabled"
   description = "enabled or disabled"
 }
+
+variable "use_vmss" {
+  type        = "string"
+  default     = "disabled"
+  description = "enabled or disabled"
+}

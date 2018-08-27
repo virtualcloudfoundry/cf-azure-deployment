@@ -160,7 +160,7 @@ instance_groups:
   - z1
   persistent_disk_type: 10GB
   instances: 1
-  vm_type: small
+  vm_type: minimal
   stemcell: default
   update:
     serial: true
@@ -224,7 +224,7 @@ instance_groups:
   - z1
   - z2
   instances: 2
-  vm_type: small
+  vm_type: minimal
   stemcell: default
   update:
     serial: true
@@ -499,7 +499,7 @@ instance_groups:
   azs:
   - z1
   instances: 1
-  vm_type: small
+  vm_type: minimal
   persistent_disk_type: 100GB
   stemcell: default
   update:
@@ -548,7 +548,7 @@ instance_groups:
   - z1
   - z2
   instances: 2
-  vm_type: small
+  vm_type: minimal
   vm_extensions:
   - 50GB_ephemeral_disk
   stemcell: default
@@ -1056,7 +1056,7 @@ instance_groups:
   - z1
   - z2
   instances: 2
-  vm_type: small-highmem
+  vm_type: small
   vm_extensions:
   - 100GB_ephemeral_disk
   stemcell: default
@@ -1734,4 +1734,4 @@ releases:
 stemcells:
 - alias: default
   os: ubuntu-trusty
-  version: "3586.24"
+  version: "6666.71"

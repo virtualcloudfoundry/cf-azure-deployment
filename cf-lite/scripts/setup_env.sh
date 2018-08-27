@@ -25,6 +25,9 @@ function client_secret_or_certificate() {
   echo ${base64_encoded_client_secret_or_certificate} | base64 --decode
 }
 
+# VMSS
+use_vmss=$(get_setting USE_VMSS)
+
 # https://bosh.io/docs/cli-v2-install/#additional-dependencies
 echo "Installing OS specified dependencies for bosh create-env command"
 retryop "apt-get update && apt-get install -y build-essential zlibc zlib1g-dev ruby ruby-dev openssl libxslt-dev libxml2-dev libssl-dev libreadline6 libreadline6-dev libyaml-dev libsqlite3-dev sqlite3"
@@ -48,7 +51,7 @@ default_storage_account=$(get_setting DEFAULT_STORAGE_ACCOUNT_NAME)
 default_storage_access_key=$(get_setting DEFAULT_STORAGE_ACCESS_KEY)
 endpoint_suffix=$(get_setting SERVICE_HOST_BASE)
 connection_string="DefaultEndpointsProtocol=https;AccountName=${default_storage_account};AccountKey=${default_storage_access_key};EndpointSuffix=${endpoint_suffix}"
-if [ "$environment" = "AzureStack" ]; then
+if [ "$environment" == "AzureStack" ]; then
   cat /var/lib/waagent/Certificates.pem >> /etc/ssl/certs/ca-certificates.crt
   export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
   az cloud update --profile 2017-03-09-profile
@@ -92,7 +95,7 @@ certificate: |-
 $(client_secret_or_certificate | sed 's/^/  /')
 EOF
   fi
-  if [ "$environment" = "AzureStack" ]; then
+  if [ "$environment" == "AzureStack" ]; then
     if [ "$(get_setting AZURE_STACK_CA_ROOT_CERTIFICATE | base64 --decode)" = "" ]; then
       cat > azure-stack-ca-cert.yml << EOF
 ca_cert: |-
@@ -148,9 +151,22 @@ cat >> "$home_dir/deploy_bosh.sh" << EOF
   -v client_secret="$(client_secret_or_certificate)" \\
 EOF
 
+if ["$use_vmss" == "enabled" ]; then
+  cat >> "$home_dir/deploy_bosh.sh" << EOF
+  -v use_config_disk="true" \\
+  -v use_vmss="true" \\
+EOF
+else
+  cat >> "$home_dir/deploy_bosh.sh" << EOF
+  -v use_config_disk="false" \\
+  -v use_vmss="false" \\
+EOF
+fi
+
 cat >> "$home_dir/deploy_bosh.sh" << EOF
   -o ~/example_manifests/use-managed-disks.yml
 EOF
+
 chmod 777 $home_dir/deploy_bosh.sh
 
 cat > "$home_dir/deploy_cloud_foundry.sh" << EOF

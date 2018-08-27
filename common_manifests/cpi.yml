@@ -3,15 +3,15 @@
   path: /releases/-
   value:
     name: bosh-azure-cpi
-    version: "35.3.0"
-    url: https://bosh.io/d/github.com/cloudfoundry-incubator/bosh-azure-cpi-release?v=35.3.0
-    sha1: 990fcfa31e70c99a109b8284d35f0b4e79665559
+    version: "35.3.0+dev.1535945089"
+    url: https://opensourcerelease.blob.core.windows.net/internalreleases/bosh-azure-cpi-vmss-release.tgz
+    sha1: 61aad2e8762c066c33798e2c2892004b8159fa06
 
 - type: replace
   path: /resource_pools/name=vms/stemcell?
   value:
-    url: https://bosh.io/d/stemcells/bosh-azure-hyperv-ubuntu-trusty-go_agent?v=3586.24
-    sha1: ddafd98aad041bc2a92fae0168ab98f2adec331e
+    url: https://opensourcerelease.blob.core.windows.net/stemcells/bosh-stemcell-6666.71-azure-hyperv-ubuntu-trusty-go_agent.tgz
+    sha1: 1b28888b1836e31c6637c30680691a6b2750ac91
 
 # Configure sizes
 - type: replace
@@ -79,6 +79,9 @@
     default_security_group: ((default_security_group))
     ssh_user: vcap
     ssh_public_key: ((ssh.public_key))
+    config_disk:
+      enabled: ((use_config_disk))
+    use_vmss: ((use_vmss))
 
 - type: replace
   path: /cloud_provider/ssh_tunnel?

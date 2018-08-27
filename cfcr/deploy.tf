@@ -10,7 +10,7 @@ resource "azurerm_virtual_machine_extension" "deploy" {
 
   settings = <<SETTINGS
     {
-        "fileUris": ["https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cfcr/scripts/setup_cfcr_env.sh"]
+        "fileUris": ["https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/vmss_support/cfcr/scripts/setup_cfcr_env.sh"]
     }
 SETTINGS
 
