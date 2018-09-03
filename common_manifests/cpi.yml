@@ -3,7 +3,7 @@
   path: /releases/-
   value:
     name: bosh-azure-cpi
-    version: "35.3.0+dev.1535966022"
+    version: "35.3.0+dev.1535978749"
     url: https://opensourcerelease.blob.core.windows.net/internalreleases/bosh-azure-cpi-vmss-vhd-release.tgz
     sha1: 3a1c9a3cd0a94b489a59ee2c55dd1e0a185f3569
 
