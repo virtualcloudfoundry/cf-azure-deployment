@@ -47,7 +47,7 @@ resource "azurerm_virtual_machine" "bastion" {
       "ENVIRONMENT": "AzureCloud",
       "SERVICE_HOST_BASE": "core.windows.net",
       "BOSH_AZURE_CPI_RELEASE_URL":"https://opensourcerelease.blob.core.windows.net/internalreleases/bosh-azure-cpi-vmss-vhd-release.tgz",
-      "BOSH_AZURE_CPI_RELEASE_SHA1":"f3b735bf07010b8a0fa501eec445ab261688ca48",
+      "BOSH_AZURE_CPI_RELEASE_SHA1":"a9279153fe10a074799ccc53177f4bf6bf7e9047",
       "STEMCELL_URL":"https://bosh.io/d/stemcells/bosh-azure-hyperv-ubuntu-trusty-go_agent?v=3586.24",
       "STEMCELL_SHA1":"ddafd98aad041bc2a92fae0168ab98f2adec331e",
       "BOSH_CLI_URL":"https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-2.0.48-linux-amd64",
