@@ -3,9 +3,9 @@
   path: /releases/-
   value:
     name: bosh-azure-cpi
-    version: "35.3.0+dev.1536051194"
+    version: "35.3.0+dev.1536052651"
     url: https://opensourcerelease.blob.core.windows.net/internalreleases/bosh-azure-cpi-vmss-container-release.tgz
-    sha1: f6ea0f2262c6813f0caac3be0cd7e68a018fb3f8
+    sha1: d5ee9d279f08270980be5028445243309552b919
 
 - type: replace
   path: /resource_pools/name=vms/stemcell?
