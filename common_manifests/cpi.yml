@@ -81,7 +81,8 @@
     ssh_public_key: ((ssh.public_key))
     config_disk:
       enabled: ((use_config_disk))
-    use_vmss: ((use_vmss))
+    vmss:
+      enabled: ((use_vmss))
 
 - type: replace
   path: /cloud_provider/ssh_tunnel?
