@@ -4,7 +4,7 @@ set -e
 
 apt-get update
 apt-get install -y build-essential zlibc zlib1g-dev ruby ruby-dev openssl libxslt-dev libxml2-dev libssl-dev libreadline6 libreadline6-dev libyaml-dev libsqlite3-dev sqlite3 jq git unzip
-curl -o /tmp/cf.tgz https://s3.amazonaws.com/go-cli/releases/v6.20.0/cf-cli_6.20.0_linux_x86-64.tgz
+curl -o /tmp/cf.tgz https://s3.amazonaws.com/go-cli/releases/v6.38.0/cf-cli_6.38.0_linux_x86-64.tgz
 tar -zxvf /tmp/cf.tgz && mv cf /usr/bin/cf && chmod +x /usr/bin/cf
 
 custom_data_file="/var/lib/cloud/instance/user-data.txt"
@@ -132,7 +132,7 @@ chmod a+x /usr/bin/set_iaas_routing
 
 
 # Get kubo-deployment
-wget https://opensourcerelease.blob.core.windows.net/internalreleases/kubo-deployment.tgz
+wget https://opensourcerelease.blob.core.windows.net/alphareleases/kubo-deployment.tgz
 mkdir -p /share
 tar -xvf kubo-deployment.tgz -C /share
 chmod -R 777 /share
