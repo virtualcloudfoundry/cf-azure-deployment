@@ -9,7 +9,8 @@ bosh create-env \
   -o  ${BBL_STATE_DIR}/bosh-deployment/uaa.yml \
   -o  ${BBL_STATE_DIR}/bosh-deployment/credhub.yml \
   -o  ${BBL_STATE_DIR}/common-manifests/small_vm_director.yml \
+  -o  ${BBL_STATE_DIR}/common-manifests/use_managed_disk.yml \
   -v  subscription_id="${BBL_AZURE_SUBSCRIPTION_ID}" \
   -v  client_id="${BBL_AZURE_CLIENT_ID}" \
   -v  client_secret="${BBL_AZURE_CLIENT_SECRET}" \
-  -v  tenant_id="${BBL_AZURE_TENANT_ID}" 
+  -v  tenant_id="${BBL_AZURE_TENANT_ID}"

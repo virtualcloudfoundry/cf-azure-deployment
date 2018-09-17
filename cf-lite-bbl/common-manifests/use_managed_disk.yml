@@ -1,0 +1,14 @@
+---
+- type: replace
+  path: /resource_pools/name=vms/cloud_properties/use_managed_disks?
+  value: true
+
+# - type: remove
+#   path: /resource_pools/name=vms/cloud_properties/storage_account_name
+
+- type: replace
+  path: /cloud_provider/properties/azure/use_managed_disks?
+  value: true
+
+- type: remove
+  path: /cloud_provider/properties/azure/storage_account_name
