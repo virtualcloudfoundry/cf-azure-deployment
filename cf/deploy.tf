@@ -12,6 +12,7 @@ resource "azurerm_virtual_machine_extension" "deploy" {
     {
         "fileUris": ["https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/common_scripts/utils.sh",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/common_manifests/bosh.yml",
+                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/common_manifests/cloud-config.yml",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/common_manifests/cpi.yml",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/common_manifests/custom-cpi-release.yml",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/common_manifests/custom-environment.yml",
@@ -21,7 +22,6 @@ resource "azurerm_virtual_machine_extension" "deploy" {
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/common_manifests/use-compiled-releases.yml",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/common_manifests/use-managed-disks.yml",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/manifests/use-service-principal-with-certificate.yml",
-                    "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/manifests/cloud-config.yml",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/manifests/cf-deployment.yml",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/manifests/azure.yml",
                     "https://raw.githubusercontent.com/virtualcloudfoundry/cf-azure-deployment/master/cf/manifests/scale-to-one-az.yml",
