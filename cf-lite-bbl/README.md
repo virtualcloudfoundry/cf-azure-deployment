@@ -3,6 +3,7 @@
 2. cloud-config/cf-cloud-config.yml
 3. terraform/cf.tf
 
+<!-- https://github.com/cloudfoundry/bosh-bootloader/tree/master/plan-patches/byoresource-group-azure -->
 
 ### Steps to deployment
 #### update cloud config

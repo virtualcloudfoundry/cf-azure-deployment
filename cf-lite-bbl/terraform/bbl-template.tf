@@ -28,7 +28,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "bosh" {
-  name     = "${var.env_id}-rg"
+  name     = "${var.env_id}-bosh"
   location = "${var.region}"
 
   tags {
@@ -48,7 +48,7 @@ resource "azurerm_public_ip" "bosh" {
 }
 
 resource "azurerm_virtual_network" "bosh" {
-  name                = "${var.env_id}-vn"
+  name                = "${var.env_id}-bosh-vn"
   address_space       = ["${var.network_cidr}"]
   location            = "${var.region}"
   resource_group_name = "${azurerm_resource_group.bosh.name}"
