@@ -1,0 +1,7 @@
+- type: replace
+  path: /releases/name=kubo
+  value:
+   name: kubo
+   version: 0.21.0+dev.1537447050
+   url: https://opensourcerelease.blob.core.windows.net/releases/kubo-release-0.21.0-dev.1537447050.tgz
+   sha1: 9b710a8dc828cd61c9dc2c6b6e1c748f40fe8a70
