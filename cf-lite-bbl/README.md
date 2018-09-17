@@ -1,17 +1,31 @@
+### Did modifications to the default bbl folder structures:
+1. cf-deployment folder
+2. cloud-config/cf-cloud-config.yml
+3. terraform/cf.tf
+
+
+### Steps to deployment
+#### update cloud config
+eval "$(bbl print-env)"
 export deployment_name='cf'
 bosh update-config --name ${deployment_name} \
    ./cf-deployment/cf-cloud-config.yml \
    --type cloud
+   -v vnet_name=andliu-cflite-vn \
+   -v cf_subnet=andliu-cflite-cf-sn \
+   -v cf_subnet_cidr=10.0.16.0/20 \
+   -v cf_internal_gw=10.0.16.1 \
+
+#### deployment cf lite.
 
 
-
-bosh -n update-cloud-config ~/example_manifests/cloud-config.yml \\
+<!-- bosh -n update-cloud-config ~/example_manifests/cloud-config.yml \\
   -v internal_cidr=10.0.16.0/20 \\
   -v internal_gw=10.0.16.1 \\
   -v vnet_name=$(get_setting VNET_NAME) \\
   -v subnet_name=$(get_setting SUBNET_NAME_FOR_CLOUD_FOUNDRY) \\
   -v security_group=$(get_setting NSG_NAME_FOR_CLOUD_FOUNDRY) \\
-  -v load_balancer_name=$(get_setting LOAD_BALANCER_NAME)
+  -v load_balancer_name=$(get_setting LOAD_BALANCER_NAME) -->
 
 bosh -n -d cf deploy ~/example_manifests/cf-deployment.yml \\
   --vars-store=~/cf-deployment-vars.yml \\
