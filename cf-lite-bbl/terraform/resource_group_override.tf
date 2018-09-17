@@ -56,6 +56,10 @@ resource "azurerm_network_security_rule" "credhub" {
   resource_group_name = "${data.azurerm_resource_group.bosh.name}"
 }
 
+resource "azurerm_subnet" "cf-subnet" {
+  resource_group_name = "${data.azurerm_resource_group.bosh.name}"
+}
+
 output "resource_group_name" {
   value = "${data.azurerm_resource_group.bosh.name}"
 }
