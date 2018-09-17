@@ -1,8 +1,8 @@
 
 vm_extensions:
-- cloud_properties:
+- name: vmss_properties
+  cloud_properties:
     availability_zones: '1,2'
-  name: vmss_properties
 - name: cf-router-network-properties
   cloud_properties:
     load_balancer: ((cf_loadbalancer_name))
