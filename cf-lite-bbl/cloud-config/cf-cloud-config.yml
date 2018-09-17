@@ -24,4 +24,5 @@ networks:
       virtual_network_name: ((vnet_name))
       subnet_name: ((cf_subnet))
       security_group: ((cf_security_group))
+      load_balancer: ((cf_loadbalancer_name))
   type: dynamic
