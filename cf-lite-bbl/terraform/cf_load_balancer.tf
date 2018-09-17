@@ -42,7 +42,7 @@ resource "azurerm_lb_probe" "health-probe" {
 resource "azurerm_lb_rule" "cf-balancer-rule-https" {
   name                           = "${var.prefix}-https-rule"
   resource_group_name            = "${azurerm_resource_group.bosh.name}"
-  depends_on                     = ["azurerm_lb_probe.health-probe", "azurerm_lb_backend_address_pool.cf-balancer-backend-pool"]
+#   depends_on                     = ["azurerm_lb_probe.health-probe", "azurerm_lb_backend_address_pool.cf-balancer-backend-pool"]
   loadbalancer_id                = "${azurerm_lb.cf-balancer.id}"
   protocol                       = "Tcp"
   frontend_port                  = 443
@@ -55,7 +55,7 @@ resource "azurerm_lb_rule" "cf-balancer-rule-https" {
 resource "azurerm_lb_rule" "cf-balancer-rule-http" {
   name                           = "${var.prefix}-http-rule"
   resource_group_name            = "${azurerm_resource_group.bosh.name}"
-  depends_on                     = ["azurerm_lb_probe.health-probe", "azurerm_lb_backend_address_pool.cf-balancer-backend-pool"]
+#   depends_on                     = ["azurerm_lb_probe.health-probe", "azurerm_lb_backend_address_pool.cf-balancer-backend-pool"]
   loadbalancer_id                = "${azurerm_lb.cf-balancer.id}"
   protocol                       = "Tcp"
   frontend_port                  = 80
