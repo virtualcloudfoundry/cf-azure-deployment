@@ -9,7 +9,7 @@ resource "azurerm_public_ip" "cf-balancer-ip" {
 
 resource "azurerm_lb" "cf-balancer" {
   name                = "${var.env_id}-cf-lb"
-  location            = "${var.location}"
+  location            = "${var.region}"
   sku                 = "Standard"
   resource_group_name = "${azurerm_resource_group.bosh.name}"
 #   depends_on          = ["azurerm_public_ip.cf-balancer-ip"]
@@ -40,7 +40,7 @@ resource "azurerm_lb_probe" "health-probe" {
 }
 
 resource "azurerm_lb_rule" "cf-balancer-rule-https" {
-  name                           = "${var.prefix}-https-rule"
+  name                           = "${var.env_id}-https-rule"
   resource_group_name            = "${azurerm_resource_group.bosh.name}"
 #   depends_on                     = ["azurerm_lb_probe.health-probe", "azurerm_lb_backend_address_pool.cf-balancer-backend-pool"]
   loadbalancer_id                = "${azurerm_lb.cf-balancer.id}"
@@ -53,7 +53,7 @@ resource "azurerm_lb_rule" "cf-balancer-rule-https" {
 }
 
 resource "azurerm_lb_rule" "cf-balancer-rule-http" {
-  name                           = "${var.prefix}-http-rule"
+  name                           = "${var.env_id}-http-rule"
   resource_group_name            = "${azurerm_resource_group.bosh.name}"
 #   depends_on                     = ["azurerm_lb_probe.health-probe", "azurerm_lb_backend_address_pool.cf-balancer-backend-pool"]
   loadbalancer_id                = "${azurerm_lb.cf-balancer.id}"
