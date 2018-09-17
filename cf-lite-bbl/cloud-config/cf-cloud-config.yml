@@ -3,6 +3,9 @@ vm_extensions:
 - cloud_properties:
     availability_zones: '1,2'
   name: vmss_properties
+- name: cf-router-network-properties
+  cloud_properties:
+    load_balancer: ((cf_loadbalancer_name))
 vm_types:
 - name: debug
   instance_type: Standard_A1_v2
@@ -24,5 +27,4 @@ networks:
       virtual_network_name: ((vnet_name))
       subnet_name: ((cf_subnet))
       security_group: ((cf_security_group))
-      load_balancer: ((cf_loadbalancer_name))
   type: dynamic
