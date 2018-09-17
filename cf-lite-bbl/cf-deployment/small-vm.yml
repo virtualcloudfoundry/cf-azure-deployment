@@ -1,0 +1,7 @@
+- type: replace
+  path: /instance_groups/name=all-in-one-1/jobs/name=cloud_controller_ng/properties/cc/default_app_memory?
+  value: 128
+
+- type: replace
+  path: /instance_groups/name=all-in-one-1/vm_type
+  value: debug

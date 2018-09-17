@@ -1,0 +1,9 @@
+- type: replace
+  path: /resource_pools/name=vms/cloud_properties/instance_type?
+  value: Standard_A1_v2
+
+
+  #   - type: replace
+  # path: /resource_pools/name=vms/cloud_properties?
+  # value:
+  #   instance_type: Standard_D1_v2

@@ -3,7 +3,9 @@ vm_extensions:
 - cloud_properties:
     availability_zones: '1,2'
   name: vmss_properties
-
+vm_types:
+- name: debug
+  instance_type: Standard_A1_v2
 networks:
 - name: cf
   subnets:
