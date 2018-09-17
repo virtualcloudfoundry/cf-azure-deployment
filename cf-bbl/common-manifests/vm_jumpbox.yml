@@ -1,0 +1,7 @@
+- type: replace
+  path: /resource_pools/name=vms/cloud_properties/instance_type?
+  value: Standard_A1_v2
+
+- type: replace
+  path: /resource_pools/name=vms/cloud_properties/ephemeral_disk?/use_root_disk?
+  value: true

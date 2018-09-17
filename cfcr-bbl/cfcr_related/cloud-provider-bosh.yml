@@ -1,4 +1,0 @@
-resource_group_name: sample-cfcr-bosh
-deployment_name: azurecfcr
-master_load_balancer_name: sample-cfcr-cfcr-balancer
-master_security_group: sample-cfcr-cfcr-master-sg # this is the security group for the master node.

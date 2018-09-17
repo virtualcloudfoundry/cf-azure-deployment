@@ -1,0 +1,39 @@
+---
+# BOSH Director must have Cloud Config with the following properties:
+# - vm_type: tiny
+# - network: manual
+
+name: dummy
+
+releases:
+- name: dummy
+  url: file://./dummy-deployment/dummy-2.tgz
+  version: '2'
+
+stemcells:
+- alias: ubuntu
+  os: ubuntu-xenial
+  version: latest
+
+instance_groups:
+- name: dummy
+  azs:
+  - z1
+  - z2
+  - z3
+  instances: 1
+  vm_type: lite
+  stemcell: ubuntu
+  vm_extensions: [vmss_properties]
+  networks:
+  - name: cf
+  jobs:
+  - name: dummy
+    release: dummy
+
+update:
+  canaries: 1
+  max_in_flight: 6
+  serial: false
+  canary_watch_time: 1000-60000
+  update_watch_time: 1000-60000
