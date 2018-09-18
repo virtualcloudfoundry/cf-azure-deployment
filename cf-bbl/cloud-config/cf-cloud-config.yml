@@ -16,7 +16,10 @@
   path: /vm_types/-
   value:
     name: lite
-    instance_type: Standard_A1_v2
+    cloud_properties:
+      ephemeral_disk:
+        size: 10240
+      instance_type: Standard_A1_v2
 
 - type: replace
   path: /networks/-
