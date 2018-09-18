@@ -8,6 +8,7 @@ bosh create-env \
   -o  ${BBL_STATE_DIR}/common-manifests/small_vm_director.yml \
   -o  ${BBL_STATE_DIR}/common-manifests/use_managed_disk.yml \
   -o  ${BBL_STATE_DIR}/common-manifests/custom_stemcell.yml \
+  -o  ${BBL_STATE_DIR}/common-manifests/custom_cpi.yml \
   -v  subscription_id="${BBL_AZURE_SUBSCRIPTION_ID}" \
   -v  client_id="${BBL_AZURE_CLIENT_ID}" \
   -v  client_secret="${BBL_AZURE_CLIENT_SECRET}" \
