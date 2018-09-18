@@ -3,7 +3,8 @@
   value:
     name: vmss_properties
     cloud_properties:
-      availability_zones: '1,2'
+      vmss:
+        availability_zones: ['1','2']
 
 - type: replace
   path: /vm_extensions/-
