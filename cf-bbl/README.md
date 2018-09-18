@@ -18,11 +18,11 @@ bosh update-config --name ${deployment_name} \
    -v cf_internal_gw=10.0.16.1 \ -->
 
 #### deployment cf lite.
-bosh -n -d cf deploy ./cf-lite-deployment/cf-deployment.yml \
-  --vars-store=./cf-deployment-vars.yml \
+bosh -n -d cflite deploy ./cf-lite-deployment/cf-deployment.yml \
+  --vars-store=./vars/cf-deployment-vars.yml \
   -o ./cf-lite-deployment/gorouter-azure.yml \
   -o ./cf-lite-deployment/use-azure-storage-blobstore.yml \
-  <!-- -v system_domain=<your_public_ip_of_load_balancer>.xip.io \ -->
+  --vars-file=./vars/director-vars.file.yml \
   -v environment=AzurePublic \
   -v app_package_directory_key=cc-packages \
   -v buildpack_directory_key=cc-buildpack \

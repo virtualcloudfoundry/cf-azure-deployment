@@ -23,5 +23,5 @@ output "cf_internal_gw" {
 }
 
 output "system_domain" {
-  value = "${azurerm_public_ip.cf-balancer-ip.ip}.xip.io"
+  value = "${azurerm_public_ip.cf-balancer-ip.ip_address}.xip.io"
 }
