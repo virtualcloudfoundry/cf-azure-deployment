@@ -17,11 +17,15 @@ stemcells:
 
 instance_groups:
 - name: dummy
+  azs:
+  - z1
+  - z2
+  - z3
   instances: 1
   vm_type: lite
   stemcell: ubuntu
   networks:
-  - name: dynamic
+  - name: cf
   jobs:
   - name: dummy
     release: dummy
