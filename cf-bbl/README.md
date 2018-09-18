@@ -20,7 +20,7 @@ bosh update-config --name ${deployment_name} \
 #### deployment cf lite.
 bosh -n -d cf deploy ./cf-lite-deployment/cf-deployment.yml \
   --vars-store=./cf-deployment-vars.yml \
-  -o ./cf-lite-deployment/azure.yml \
+  -o ./cf-lite-deployment/gorouter-azure.yml \
   -o ./cf-lite-deployment/use-azure-storage-blobstore.yml \
   <!-- -v system_domain=<your_public_ip_of_load_balancer>.xip.io \ -->
   -v environment=AzurePublic \

@@ -15,7 +15,7 @@
 - type: replace
   path: /vm_types/-
   value:
-    name: debug
+    name: lite
     instance_type: Standard_A1_v2
 
 - type: replace
