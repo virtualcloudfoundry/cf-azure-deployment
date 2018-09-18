@@ -34,8 +34,8 @@
   value: &blobstore-properties
     provider: AzureRM
     environment: ((environment))
-    azure_storage_account_name: ((blobstore_storage_account_name))
-    azure_storage_access_key: ((blobstore_storage_access_key))
+    azure_storage_account_name: ((default_storage_account_name))
+    azure_storage_access_key: ((default_storage_account_key))
 
 - type: replace
   path: /instance_groups/name=all-in-one-1/jobs/name=cloud_controller_ng/properties/cc/droplets?/fog_connection?

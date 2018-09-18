@@ -21,3 +21,7 @@ output "cf_subnet_cidr" {
 output "cf_internal_gw" {
   value = "${cidrhost(var.cf_internal_cidr, 1)}"
 }
+
+output "system_domain" {
+  value = "${azurerm_public_ip.cf-balancer-ip.ip}.xip.io"
+}
