@@ -4,6 +4,6 @@ cf/ssh_key.pub
 **/.terraform.tfstate.lock.info
 **/terraform.tfstate
 **/terraform.tfstate.backup
-cf-lite-bbl/vars
-cf-lite-bbl/bbl-state.json
+cf-bbl/vars
+cf-bbl/bbl-state.json
 cfcr-bbl/vars
