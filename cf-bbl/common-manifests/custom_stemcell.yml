@@ -3,4 +3,3 @@
   value:
     url: https://opensourcerelease.blob.core.windows.net/releases/bosh-stemcell-6666.66-azure-hyperv-ubuntu-xenial-go_agent.tgz
     sha1: 073edfb9315aa318c24c0b9968dd9e30c73fe409
-    
