@@ -2,5 +2,5 @@
   path: /resource_pools/name=vms/stemcell?
   value:
     url: https://opensourcerelease.blob.core.windows.net/stemcells/bosh-stemcell-6666.66-azure-hyperv-ubuntu-xenial-go_agent.tgz
-    # sha1: ddafd98aad041bc2a92fae0168ab98f2adec331e
+    sha1: 073edfb9315aa318c24c0b9968dd9e30c73fe409
     
