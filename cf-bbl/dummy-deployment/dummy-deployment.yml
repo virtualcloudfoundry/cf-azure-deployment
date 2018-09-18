@@ -24,7 +24,7 @@ instance_groups:
   instances: 1
   vm_type: lite
   stemcell: ubuntu
-  vm_extensions: [vmss_availability_zone]
+  vm_extensions: [vmss_properties]
   networks:
   - name: cf
   jobs:

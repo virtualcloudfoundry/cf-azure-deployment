@@ -1,12 +1,12 @@
-# add the vmss related properties to the instance groups.
-- type: replace
-  path: /vm_extensions/-
-  value:
-    - name: vmss_availability_zone
-      cloud_properties:
-        vmss:
-          availability_zones: '1,2'
-- type: replace
-  path: /instance_groups/name=dummy/cloud_properties?
-  value:
+# # add the vmss related properties to the instance groups.
+# - type: replace
+#   path: /vm_extensions/-
+#   value:
+#     - name: vmss_availability_zone
+#       cloud_properties:
+#         vmss:
+#           availability_zones: "1,2"
+# # - type: replace
+# #   path: /instance_groups/name=dummy/cloud_properties?
+# #   value:
     
