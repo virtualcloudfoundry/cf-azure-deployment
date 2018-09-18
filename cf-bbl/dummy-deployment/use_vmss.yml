@@ -1,5 +1,6 @@
 # add the vmss related properties to the instance groups.
 - type: replace
-  path: /instance_groups/name=all-in-one-1/cloud_properties/vmss?
+  path: /instance_groups/name=dummy/cloud_properties?
   value:
-    availability_zones: '1,2'
+    vmss:
+      availability_zones: '1,2'

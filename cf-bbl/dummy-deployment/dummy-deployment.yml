@@ -8,7 +8,7 @@ name: dummy
 releases:
 - name: dummy
   url: file://./dummy-deployment/dummy-2.tgz
-  # version: latest
+  version: '2'
 
 stemcells:
 - alias: ubuntu
