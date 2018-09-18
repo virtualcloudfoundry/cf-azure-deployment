@@ -1,5 +1,5 @@
 - type: replace
-  path: /releases/-
+  path: /releases/name=bosh-azure-cpi
   value:
     name: bosh-azure-cpi
     version: "35.4.0+dev.1537236445"
