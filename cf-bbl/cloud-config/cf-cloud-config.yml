@@ -14,6 +14,11 @@
       load_balancer: ((cf_loadbalancer_name))
 
 - type: replace
+  path: /vm_extensions/-
+  value:
+    name: cf-tcp-router-network-properties
+
+- type: replace
   path: /vm_types/-
   value:
     name: lite
