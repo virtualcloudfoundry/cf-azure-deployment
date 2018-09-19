@@ -21,7 +21,7 @@ instance_groups:
   - z1
   - z2
   - z3
-  instances: 2
+  instances: 1
   vm_type: lite
   stemcell: ubuntu
   vm_extensions: [vmss_properties]

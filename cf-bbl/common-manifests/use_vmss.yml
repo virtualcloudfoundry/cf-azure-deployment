@@ -1,0 +1,12 @@
+
+# enable the vmss.
+- type: replace
+  path: /instance_groups/name=bosh/properties/azure/vmss?
+  value:
+    enabled: true
+
+# enable the config_disk.
+- type: replace
+  path: /instance_groups/name=bosh/properties/azure/config_disk?
+  value:
+    enabled: true

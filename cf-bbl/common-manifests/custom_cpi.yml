@@ -2,18 +2,6 @@
   path: /releases/name=bosh-azure-cpi
   value:
     name: bosh-azure-cpi
-    version: "35.4.0+dev.1537236445"
-    url: https://opensourcerelease.blob.core.windows.net/releases/bosh-azure-cpi-vmss-release.tgz
-    sha1: 6662c17d0d7db3d63c26bbf036f7d0c9dbd63a18
-
-# enable the vmss.
-- type: replace
-  path: /instance_groups/name=bosh/properties/azure/vmss?
-  value:
-    enabled: true
-
-# enable the config_disk.
-- type: replace
-  path: /instance_groups/name=bosh/properties/azure/config_disk?
-  value:
-    enabled: true
+    version: "35.4.0+dev.1537343347"
+    url: https://opensourcerelease.blob.core.windows.net/releases/bosh-azure-cpi-release-35.4.0-dev.1537343347.tgz
+    sha1: 10e671b69905ed17eb25051c81afbd611149f835
