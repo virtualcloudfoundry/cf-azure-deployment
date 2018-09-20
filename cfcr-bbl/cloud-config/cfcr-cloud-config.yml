@@ -36,10 +36,10 @@
       - z1
       - z2
       - z3
-      gateway: ((cf_internal_gw))
-      range: ((cf_subnet_cidr))
+      gateway: ((cfcr_internal_gw))
+      range: ((cfcr_subnet_cidr))
       reserved:
-      - ((cf_internal_gw))/30
+      - ((cfcr_internal_gw))/30
       # dns:
       # - 8.8.8.8
       # - 168.63.129.16
