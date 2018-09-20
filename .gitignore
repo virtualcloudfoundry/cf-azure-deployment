@@ -7,3 +7,4 @@ cf/ssh_key.pub
 cf-bbl/vars
 cf-bbl/bbl-state.json
 cfcr-bbl/vars
+cfcr-bbl/bbl-state.json

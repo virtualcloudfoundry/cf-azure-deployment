@@ -1,0 +1,7 @@
+- type: replace
+  path: /releases/name=bosh-azure-cpi
+  value:
+    name: bosh-azure-cpi
+    version: "35.4.0+dev.1537343347"
+    url: https://opensourcerelease.blob.core.windows.net/releases/bosh-azure-cpi-release-35.4.0-dev.1537343347.tgz
+    sha1: 10e671b69905ed17eb25051c81afbd611149f835
