@@ -1,6 +1,6 @@
 .terraform
-cf/.terraform/
-cf/ssh_key.pub
+legacy/cf/.terraform/
+legacy/cf/ssh_key.pub
 **/.terraform.tfstate.lock.info
 **/terraform.tfstate
 **/terraform.tfstate.backup
