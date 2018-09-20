@@ -6,17 +6,17 @@
       vmss:
         availability_zones: ['1','2']
 
-- type: replace
-  path: /vm_extensions/-
-  value:
-    name: cf-router-network-properties
-    cloud_properties:
-      load_balancer: ((cf_loadbalancer_name))
+# - type: replace
+#   path: /vm_extensions/-
+#   value:
+#     name: cf-router-network-properties
+#     cloud_properties:
+#       load_balancer: ((cf_loadbalancer_name))
 
-- type: replace
-  path: /vm_extensions/-
-  value:
-    name: cf-tcp-router-network-properties
+# - type: replace
+#   path: /vm_extensions/-
+#   value:
+#     name: cf-tcp-router-network-properties
 
 - type: replace
   path: /vm_types/-
@@ -30,7 +30,7 @@
 - type: replace
   path: /networks/-
   value:
-    name: cf
+    name: cfcr
     subnets:
     - azs:
       - z1
@@ -45,6 +45,6 @@
       # - 168.63.129.16
       cloud_properties:
         virtual_network_name: ((vnet_name))
-        subnet_name: ((cf_subnet))
-        security_group: ((cf_security_group))
+        subnet_name: ((cfcr_subnet))
+        # security_group: ((cfcr_security_group))
     type: dynamic
