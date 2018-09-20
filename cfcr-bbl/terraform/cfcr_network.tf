@@ -1,3 +1,6 @@
+variable "cfcr_internal_cidr" {
+  default = "10.0.16.0/20"
+}
 // Subnet for CFCR
 resource "azurerm_subnet" "cfcr-subnet" {
   name                 = "${var.env_id}-cfcr-sn"
@@ -35,7 +38,7 @@ output "cfcr_subnet_cidr" {
 }
 
 output "cfcr_internal_gw" {
-  value = "${cidrhost(var.cf_internal_cidr, 1)}"
+  value = "${cidrhost(var.cfcr_internal_cidr, 1)}"
 }
 
 output "master_security_group" {
