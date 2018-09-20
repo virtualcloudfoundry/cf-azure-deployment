@@ -20,7 +20,7 @@ bosh -n deploy -d ${deployment_name} ./kubo-deployment/manifests/cfcr.yml \
     -o ./kubo-deployment/manifests/ops-files/misc/small-vm.yml \
     -o ./kubo-deployment/manifests/ops-files/iaas/azure/subnet.yml \
     -v azure_cloud_name="AzurePublicCloud" \
-    -v primary_availability_set="${deployment_name}-worker" \
+    -v primary_availability_set="bosh-andliu-cfo-azurecfcr-worker" \
     -v deployment_name=${deployment_name} \
     -v subscription_id="${BBL_AZURE_SUBSCRIPTION_ID}" \
     -v client_id="${BBL_AZURE_CLIENT_ID}" \
