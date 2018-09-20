@@ -6,9 +6,9 @@ bosh deploy -d azurecfcr ./kubo-deployment/manifests/cfcr.yml \
     -o ./kubo-deployment/manifests/ops-files/iaas/azure/cloud-provider.yml \
     -o ./kubo-deployment/manifests/ops-files/misc/single-master.yml \
     -o ./kubo-deployment/manifests/ops-files/add-hostname-to-master-certificate.yml \
-    -o ./kubo-deployment/manifests/ops-files/kubo-local-release.yml \
     -o ./kubo-deployment/manifests/ops-files/rename.yml \
     -o ./kubo-deployment/manifests/ops-files/use-vm-extensions.yml \
+    -o ./kubo-deployment/customize_kubo_release.yml \
     -o ./kubo-deployment/manifests/ops-files/misc/small-vm.yml \
     -o ./kubo-deployment/manifests/ops-files/iaas/azure/subnet.yml \
     -v deployment_name=azurecfcr \
