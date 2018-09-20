@@ -30,6 +30,14 @@ output "cfcr_subnet" {
   value = "${azurerm_subnet.cfcr-subnet.name}"
 }
 
+output "cfcr_subnet_cidr" {
+  value = "${cidrsubnet(var.network_cidr, 4, 1)}"
+}
+
+output "cfcr_internal_gw" {
+  value = "${cidrhost(var.cf_internal_cidr, 1)}"
+}
+
 output "master_security_group" {
   value = "${azurerm_network_security_group.cfcr-master.name}"
 }
