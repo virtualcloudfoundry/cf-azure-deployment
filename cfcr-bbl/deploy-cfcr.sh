@@ -3,7 +3,7 @@ bosh upload-stemcell --sha1=073edfb9315aa318c24c0b9968dd9e30c73fe409 https://ope
 
 # create one cloud config specific to the deployment
 export deployment_name="azurecfcr"
-bosh update-config --name ${deployment_name} \
+bosh -n update-config --name ${deployment_name} \
    ./kubo-deployment/manifests/cloud-config/iaas/azure/use-vm-extensions.yml \
    --type cloud \
    --vars-file=./vars/director-vars-file.yml \
