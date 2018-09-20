@@ -16,3 +16,13 @@ bosh deploy -d azurecfcr ./cfcr_manifests/cfcr.yml \
     -v client_id="${BBL_AZURE_CLIENT_ID}" \
     -v client_secret="${BBL_AZURE_CLIENT_SECRET}" \
     -v tenant_id="${BBL_AZURE_TENANT_ID}"
+    #  \
+    # azure_cloud_name: AzurePublicCloud
+    # -v location=
+#     location: southeastasia
+# resource_group_name: sample-cfcr-bosh
+# vnet_resource_group_name: sample-cfcr-bosh
+# vnet_name: sample-cfcr-bosh-vn
+# subnet_name: sample-cfcr-cfcr-sn
+# default_security_group: sample-cfcr-cfcr-master-sg
+# primary_availability_set: bosh-sample-cfcr-azurecfcr-worker
