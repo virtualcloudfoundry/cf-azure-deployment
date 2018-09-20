@@ -27,7 +27,7 @@ resource "azurerm_network_security_group" "cfcr-master" {
 }
 
 output "cfcr_subnet" {
-  value = "${azurerm_subnet.cfcr_subnet.name}"
+  value = "${azurerm_subnet.cfcr-subnet.name}"
 }
 
 output "master_security_group" {
