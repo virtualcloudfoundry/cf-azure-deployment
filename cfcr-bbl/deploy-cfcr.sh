@@ -1,7 +1,7 @@
 #!/bin/sh
 bosh upload-stemcell --sha1=073edfb9315aa318c24c0b9968dd9e30c73fe409 https://opensourcerelease.blob.core.windows.net/releases/bosh-stemcell-6666.66-azure-hyperv-ubuntu-xenial-go_agent.tgz
 
-bosh deploy -d azurecfcr ./kubo-deployment/manifests/cfcr.yml \
+bosh -n deploy -d azurecfcr ./kubo-deployment/manifests/cfcr.yml \
     --vars-file=./vars/director-vars-file.yml \
     -o ./kubo-deployment/manifests/ops-files/iaas/azure/cloud-provider.yml \
     -o ./kubo-deployment/manifests/ops-files/misc/single-master.yml \
