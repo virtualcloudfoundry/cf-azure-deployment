@@ -5,19 +5,3 @@
     cloud_properties:
       ephemeral_disk:
         use_root_disk: true
-
-- type: replace
-  path: /vm_extensions/-
-  value:
-    cloud_properties:
-      resource_group_name: ((resource_group_name))
-      load_balancer: ((master_load_balancer_name))
-      security_group: ((master_security_group))
-    name: ((deployment_name))-master-cloud-properties
-
-- type: replace
-  path: /vm_extensions/-
-  value:
-    cloud_properties:
-      resource_group_name: ((resource_group_name))
-    name: ((deployment_name))-worker-cloud-properties
