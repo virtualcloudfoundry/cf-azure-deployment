@@ -29,6 +29,10 @@ resource "azurerm_network_security_group" "cfcr-master" {
   }
 }
 
+output "vnet_resource_group_name" {
+  value = "${data.azurerm_resource_group.bosh.name}"
+}
+
 output "cfcr_subnet" {
   value = "${azurerm_subnet.cfcr-subnet.name}"
 }
