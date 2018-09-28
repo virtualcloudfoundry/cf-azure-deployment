@@ -19,6 +19,7 @@ bosh -n deploy -d ${deployment_name} ./kubo-deployment/manifests/cfcr.yml \
     -o ./kubo-deployment/customize_kubo_release.yml \
     -o ./kubo-deployment/manifests/ops-files/misc/small-vm.yml \
     -o ./kubo-deployment/manifests/ops-files/iaas/azure/subnet.yml \
+    -o ./kubo-deployment/manifests/ops-files/use-runtime-config-bosh-dns.yml \
     -v azure_cloud_name="AzurePublicCloud" \
     -v primary_availability_set="bosh-andliu-cfo-azurecfcr-worker" \
     -v deployment_name=${deployment_name} \

@@ -57,6 +57,7 @@ jobs:
       - aggregate:
         - get: bosh-deployment
         - get: backup-and-restore-sdk-release
+          trigger: true
           version:
             version: "1.9.0"
         - get: ubuntu-xenial-stemcell
@@ -75,8 +76,9 @@ jobs:
       - aggregate:
         - get: bosh-deployment
         - get: bosh-release
+          trigger: true
           version:
-            version: "267.4.0"
+            version: "268.0.1"
         - get: ubuntu-xenial-stemcell
       - task: export-release
         file: bosh-deployment/ci/compiled-releases/tasks/export-release.yml
@@ -93,8 +95,9 @@ jobs:
       - aggregate:
         - get: bosh-deployment
         - get: bpm-release
+          trigger: true
           version:
-            version: "0.9.0"
+            version: "0.12.3"
         - get: ubuntu-xenial-stemcell
       - task: export-release
         file: bosh-deployment/ci/compiled-releases/tasks/export-release.yml
@@ -111,8 +114,9 @@ jobs:
       - aggregate:
         - get: bosh-deployment
         - get: credhub-release
+          trigger: true
           version:
-            version: "1.9.3"
+            version: "2.0.2"
         - get: ubuntu-xenial-stemcell
       - task: export-release
         file: bosh-deployment/ci/compiled-releases/tasks/export-release.yml
@@ -129,6 +133,7 @@ jobs:
       - aggregate:
           - get: bosh-deployment
           - get: docker-cpi
+            trigger: true
             version:
               version: "0.0.5"
           - get: ubuntu-xenial-stemcell
@@ -147,6 +152,7 @@ jobs:
       - aggregate:
           - get: bosh-deployment
           - get: garden-runc
+            trigger: true
             version:
               version: "1.16.3"
           - get: ubuntu-xenial-stemcell
@@ -165,6 +171,7 @@ jobs:
       - aggregate:
           - get: bosh-deployment
           - get: uaa-release
+            trigger: true
             version:
               version: "60.2"
           - get: ubuntu-xenial-stemcell
@@ -183,6 +190,7 @@ jobs:
       - aggregate:
           - get: bosh-deployment
           - get: warden-cpi
+            trigger: true
             version:
               version: "40"
           - get: ubuntu-xenial-stemcell
